@@ -12,8 +12,10 @@
 
     <title>PCPilot</title>
 
-    <!-- Main Styles -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="/style/style.css">
+
+    <!-- Touchpad CSS -->
     <link rel="stylesheet" href="/style/touchpad.css">
 
 </head>
@@ -23,9 +25,9 @@
 
 <div class="app">
 
-    <!-- ============================= -->
+    <!-- ================================= -->
     <!-- HEADER -->
-    <!-- ============================= -->
+    <!-- ================================= -->
 
     <header>
 
@@ -40,13 +42,16 @@
     </header>
 
 
-    <!-- ============================= -->
-    <!-- MAIN CONTENT -->
-    <!-- ============================= -->
+    <!-- ================================= -->
+    <!-- MAIN -->
+    <!-- ================================= -->
 
     <main>
 
-        <!-- Connection / Welcome -->
+        <!-- ================================= -->
+        <!-- CONNECTION CARD -->
+        <!-- ================================= -->
+
         <section class="welcome-card">
 
             <h2>Welcome to PCPilot</h2>
@@ -71,9 +76,9 @@
         </section>
 
 
-        <!-- ============================= -->
+        <!-- ================================= -->
         <!-- TOUCHPAD -->
-        <!-- ============================= -->
+        <!-- ================================= -->
 
         <section class="touchpad-section">
 
@@ -90,7 +95,9 @@
             </div>
 
 
-            <!-- Actual Touchpad Area -->
+            <!-- ================================= -->
+            <!-- ACTUAL TOUCHPAD -->
+            <!-- ================================= -->
 
             <div
                 id="touchpad"
@@ -98,35 +105,47 @@
             >
 
                 <div class="touchpad-message">
-                    Touchpad
+                    Move your finger here
                 </div>
 
             </div>
 
 
-            <!-- ============================= -->
+            <!-- ================================= -->
             <!-- MOUSE BUTTONS -->
-            <!-- ============================= -->
+            <!-- ================================= -->
 
             <div class="mouse-buttons">
 
-                <button id="left-click">
+                <button
+                    id="left-click"
+                    type="button"
+                >
                     🖱️ Left Click
                 </button>
 
-                <button id="right-click">
+
+                <button
+                    id="right-click"
+                    type="button"
+                >
                     🖱️ Right Click
                 </button>
 
             </div>
 
 
-            <!-- Double Click -->
+            <!-- ================================= -->
+            <!-- DOUBLE CLICK -->
+            <!-- ================================= -->
 
             <div class="extra-controls">
 
-                <button id="double-click">
-                    Double Click
+                <button
+                    id="double-click"
+                    type="button"
+                >
+                    🖱️ Double Click
                 </button>
 
             </div>
@@ -138,11 +157,12 @@
 </div>
 
 
-<!-- ============================= -->
+<!-- ================================= -->
 <!-- JAVASCRIPT -->
-<!-- ============================= -->
+<!-- ================================= -->
 
 <script src="/js/app.js"></script>
+
 <script src="/js/touchpad.js"></script>
 
 
