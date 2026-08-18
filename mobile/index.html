@@ -1,51 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>PCPilot</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/touchpad.css">
+
 </head>
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <header>
-            <h1>PCPilot</h1>
-            <p>Universal PC Remote</p>
+    <header>
 
-            <div id="connection-status">
-                🔴 Connecting...
+        <h1>PCPilot</h1>
+
+        <p>Universal PC Remote</p>
+
+        <div id="connection-status">
+            🟢 Connected
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="touchpad-section">
+
+            <div class="section-title">
+                <h2>🖱️ Touchpad</h2>
+                <span>Move your finger to control the cursor</span>
             </div>
-        </header>
 
-        <main>
 
-            <section class="welcome-card">
-                <h2>Welcome to PCPilot</h2>
+            <div id="touchpad" class="touchpad">
 
-                <p>
-                    Control your computer directly
-                    from your phone.
-                </p>
-
-                <div class="status">
-                    <span id="status-icon">🔴</span>
-                    <span id="status-text">
-                        Connecting to PC...
-                    </span>
+                <div class="touchpad-message">
+                    Touchpad
                 </div>
-            </section>
 
-        </main>
+            </div>
 
-    </div>
 
-    <script src="js/app.js"></script>
+            <div class="mouse-buttons">
+
+                <button id="left-click">
+                    🖱️ Left Click
+                </button>
+
+                <button id="right-click">
+                    🖱️ Right Click
+                </button>
+
+            </div>
+
+
+            <div class="extra-controls">
+
+                <button id="double-click">
+                    Double Click
+                </button>
+
+                <button id="scroll-up">
+                    ⬆️ Scroll Up
+                </button>
+
+                <button id="scroll-down">
+                    ⬇️ Scroll Down
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/app.js"></script>
+<script src="js/touchpad.js"></script>
 
 </body>
+
 </html>
