@@ -1,7 +1,17 @@
 from flask import Flask, send_from_directory
 import socket
+import os
 
-app = Flask(__name__)
+# Path to the mobile folder
+MOBILE_FOLDER = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "mobile")
+)
+
+app = Flask(
+    __name__,
+    static_folder=MOBILE_FOLDER,
+    static_url_path=""
+)
 
 
 def get_local_ip():
@@ -12,13 +22,14 @@ def get_local_ip():
         ip = s.getsockname()[0]
         s.close()
         return ip
+
     except Exception:
         return "127.0.0.1"
 
 
 @app.route("/")
 def home():
-    return send_from_directory("../mobile", "index.html")
+    return send_from_directory(MOBILE_FOLDER, "index.html")
 
 
 @app.route("/api/status")
@@ -39,4 +50,8 @@ if __name__ == "__main__":
     print("Open this address on your phone.")
     print("===================================\n")
 
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
