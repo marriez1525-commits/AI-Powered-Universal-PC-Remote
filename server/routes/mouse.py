@@ -3,7 +3,11 @@ from flask import Blueprint, request, jsonify
 from services.mouse_service import MouseService
 
 
-mouse_bp = Blueprint("mouse", __name__, url_prefix="/api/mouse")
+mouse_bp = Blueprint(
+    "mouse",
+    __name__,
+    url_prefix="/api/mouse"
+)
 
 
 @mouse_bp.route("/move", methods=["POST"])
@@ -15,7 +19,6 @@ def move_mouse():
         dx = float(data.get("dx", 0))
         dy = float(data.get("dy", 0))
 
-        # Limit movement coming from the phone
         dx = max(-100, min(100, dx))
         dy = max(-100, min(100, dy))
 
@@ -26,6 +29,7 @@ def move_mouse():
         })
 
     except (TypeError, ValueError):
+
         return jsonify({
             "success": False,
             "error": "Invalid mouse movement"
@@ -71,6 +75,7 @@ def scroll():
     data = request.get_json(silent=True) or {}
 
     try:
+
         amount = int(data.get("amount", 0))
 
         amount = max(-10, min(10, amount))
@@ -83,6 +88,7 @@ def scroll():
         })
 
     except (TypeError, ValueError):
+
         return jsonify({
             "success": False,
             "error": "Invalid scroll amount"

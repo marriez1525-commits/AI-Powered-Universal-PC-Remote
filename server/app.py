@@ -6,13 +6,15 @@ from routes.mouse import mouse_bp
 
 
 # ==========================================
-# PATHS
+# PROJECT PATHS
 # ==========================================
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MOBILE_FOLDER = os.path.join(BASE_DIR, "mobile")
-CSS_FOLDER = os.path.join(MOBILE_FOLDER, "css")
+
+STYLE_FOLDER = os.path.join(MOBILE_FOLDER, "style")
+
 JS_FOLDER = os.path.join(MOBILE_FOLDER, "js")
 
 
@@ -26,22 +28,46 @@ app.register_blueprint(mouse_bp)
 
 
 # ==========================================
-# MOBILE FRONTEND
+# MOBILE PAGE
 # ==========================================
 
 @app.route("/")
 def home():
-    return send_from_directory(MOBILE_FOLDER, "index.html")
+
+    return send_from_directory(
+        MOBILE_FOLDER,
+        "index.html"
+    )
 
 
-@app.route("/css/<path:filename>")
-def css_files(filename):
-    return send_from_directory(CSS_FOLDER, filename)
+# ==========================================
+# CSS FILES
+# ==========================================
 
+@app.route("/style/<path:filename>")
+def style_files(filename):
+
+    print("STYLE requested:", filename)
+
+    return send_from_directory(
+        STYLE_FOLDER,
+        filename
+    )
+
+
+# ==========================================
+# JAVASCRIPT FILES
+# ==========================================
 
 @app.route("/js/<path:filename>")
 def js_files(filename):
-    return send_from_directory(JS_FOLDER, filename)
+
+    print("JS requested:", filename)
+
+    return send_from_directory(
+        JS_FOLDER,
+        filename
+    )
 
 
 # ==========================================
@@ -50,6 +76,7 @@ def js_files(filename):
 
 @app.route("/api/status")
 def status():
+
     return jsonify({
         "status": "connected",
         "message": "PCPilot server is running"
@@ -64,7 +91,10 @@ def get_local_ip():
 
     try:
 
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s = socket.socket(
+            socket.AF_INET,
+            socket.SOCK_DGRAM
+        )
 
         s.connect(("8.8.8.8", 80))
 
