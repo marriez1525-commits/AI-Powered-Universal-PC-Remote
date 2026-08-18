@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from server.services.mouse_service import MouseService
+from services.mouse_service import MouseService
 
 
 mouse_bp = Blueprint("mouse", __name__, url_prefix="/api/mouse")
