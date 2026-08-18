@@ -1,51 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>PCPilot</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Touchpad Styles -->
+    <link rel="stylesheet" href="/css/touchpad.css">
+
 </head>
+
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <header>
-            <h1>PCPilot</h1>
-            <p>Universal PC Remote</p>
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
 
-            <div id="connection-status">
-                🔴 Connecting...
+    <header>
+
+        <h1>PCPilot</h1>
+
+        <p>Universal PC Remote</p>
+
+        <div id="connection-status">
+            🔴 Connecting...
+        </div>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
+    <main>
+
+        <!-- Connection / Welcome -->
+        <section class="welcome-card">
+
+            <h2>Welcome to PCPilot</h2>
+
+            <p>
+                Control your computer directly
+                from your phone.
+            </p>
+
+            <div class="status">
+
+                <span id="status-icon">
+                    🔴
+                </span>
+
+                <span id="status-text">
+                    Connecting to PC...
+                </span>
+
             </div>
-        </header>
 
-        <main>
+        </section>
 
-            <section class="welcome-card">
-                <h2>Welcome to PCPilot</h2>
 
-                <p>
-                    Control your computer directly
-                    from your phone.
-                </p>
+        <!-- ============================= -->
+        <!-- TOUCHPAD -->
+        <!-- ============================= -->
 
-                <div class="status">
-                    <span id="status-icon">🔴</span>
-                    <span id="status-text">
-                        Connecting to PC...
-                    </span>
+        <section class="touchpad-section">
+
+            <div class="section-title">
+
+                <h2>
+                    🖱️ Touchpad
+                </h2>
+
+                <span>
+                    Move your finger to control the cursor
+                </span>
+
+            </div>
+
+
+            <!-- Actual Touchpad Area -->
+
+            <div
+                id="touchpad"
+                class="touchpad"
+            >
+
+                <div class="touchpad-message">
+                    Touchpad
                 </div>
-            </section>
 
-        </main>
+            </div>
 
-    </div>
 
-    <script src="js/app.js"></script>
+            <!-- ============================= -->
+            <!-- MOUSE BUTTONS -->
+            <!-- ============================= -->
+
+            <div class="mouse-buttons">
+
+                <button id="left-click">
+                    🖱️ Left Click
+                </button>
+
+                <button id="right-click">
+                    🖱️ Right Click
+                </button>
+
+            </div>
+
+
+            <!-- Double Click -->
+
+            <div class="extra-controls">
+
+                <button id="double-click">
+                    Double Click
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script src="/js/app.js"></script>
+
+<script src="/js/touchpad.js"></script>
+
 
 </body>
+
 </html>
