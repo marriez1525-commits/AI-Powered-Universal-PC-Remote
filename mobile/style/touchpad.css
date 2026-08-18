@@ -15,13 +15,10 @@
     color: #64748b;
 }
 
-
 .touchpad {
     width: 100%;
     height: 320px;
-
     background: #111827;
-
     border-radius: 18px;
 
     display: flex;
@@ -38,62 +35,40 @@
     overflow: hidden;
 }
 
-
 .touchpad-message {
     color: #64748b;
     font-size: 18px;
     pointer-events: none;
 }
 
-
 .mouse-buttons {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 10px;
-
     margin-top: 15px;
 }
 
-
 .mouse-buttons button,
 .extra-controls button {
-
     border: none;
-
     padding: 15px 10px;
-
     border-radius: 12px;
-
     background: #e5e7eb;
-
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     touch-action: manipulation;
 }
 
-
 .mouse-buttons button:active,
 .extra-controls button:active {
-
     transform: scale(0.97);
-
     background: #d1d5db;
 }
 
-
 .extra-controls {
-
     display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-
+    grid-template-columns: 1fr;
     gap: 8px;
-
     margin-top: 10px;
 }
