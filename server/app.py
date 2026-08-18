@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory
 import socket
 import os
 
-from server.routes.mouse import mouse_bp
+from routes.mouse import mouse_bp
 
 # Path to the mobile folder
 MOBILE_FOLDER = os.path.abspath(
