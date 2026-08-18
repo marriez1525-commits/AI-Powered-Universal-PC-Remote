@@ -2,6 +2,8 @@ from flask import Flask, send_from_directory
 import socket
 import os
 
+from server.routes.mouse import mouse_bp
+
 # Path to the mobile folder
 MOBILE_FOLDER = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "mobile")
@@ -13,7 +15,7 @@ app = Flask(
     static_url_path=""
 )
 
-
+app.register_blueprint(mouse_bp)
 def get_local_ip():
     """Get the laptop's local network IP address."""
     try:
