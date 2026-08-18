@@ -12,14 +12,22 @@
 
     <title>PCPilot</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/touchpad.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Touchpad Styles -->
+    <link rel="stylesheet" href="/css/touchpad.css">
 
 </head>
+
 
 <body>
 
 <div class="app">
+
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
 
     <header>
 
@@ -28,23 +36,68 @@
         <p>Universal PC Remote</p>
 
         <div id="connection-status">
-            🟢 Connected
+            🔴 Connecting...
         </div>
 
     </header>
 
 
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
     <main>
+
+        <!-- Connection / Welcome -->
+        <section class="welcome-card">
+
+            <h2>Welcome to PCPilot</h2>
+
+            <p>
+                Control your computer directly
+                from your phone.
+            </p>
+
+            <div class="status">
+
+                <span id="status-icon">
+                    🔴
+                </span>
+
+                <span id="status-text">
+                    Connecting to PC...
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- TOUCHPAD -->
+        <!-- ============================= -->
 
         <section class="touchpad-section">
 
             <div class="section-title">
-                <h2>🖱️ Touchpad</h2>
-                <span>Move your finger to control the cursor</span>
+
+                <h2>
+                    🖱️ Touchpad
+                </h2>
+
+                <span>
+                    Move your finger to control the cursor
+                </span>
+
             </div>
 
 
-            <div id="touchpad" class="touchpad">
+            <!-- Actual Touchpad Area -->
+
+            <div
+                id="touchpad"
+                class="touchpad"
+            >
 
                 <div class="touchpad-message">
                     Touchpad
@@ -52,6 +105,10 @@
 
             </div>
 
+
+            <!-- ============================= -->
+            <!-- MOUSE BUTTONS -->
+            <!-- ============================= -->
 
             <div class="mouse-buttons">
 
@@ -66,13 +123,15 @@
             </div>
 
 
-           <div class="extra-controls">
+            <!-- Double Click -->
 
-    <button id="double-click">
-        Double Click
-    </button>
+            <div class="extra-controls">
 
-</div>
+                <button id="double-click">
+                    Double Click
+                </button>
+
+            </div>
 
         </section>
 
@@ -81,8 +140,14 @@
 </div>
 
 
-<script src="js/app.js"></script>
-<script src="js/touchpad.js"></script>
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script src="/js/app.js"></script>
+
+<script src="/js/touchpad.js"></script>
+
 
 </body>
 
