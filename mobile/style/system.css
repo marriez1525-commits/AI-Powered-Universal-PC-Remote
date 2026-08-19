@@ -1,0 +1,135 @@
+/* =========================================
+   SYSTEM CONTROL
+========================================= */
+
+.system-section {
+
+    margin-top: 25px;
+
+    padding: 0 15px;
+
+}
+
+
+.system-title {
+
+    margin-bottom: 15px;
+
+}
+
+
+.system-title h2 {
+
+    margin: 0 0 6px 0;
+
+    font-size: 25px;
+
+}
+
+
+.system-title p {
+
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   SYSTEM BUTTONS
+========================================= */
+
+.system-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.system-controls button {
+
+    min-height: 60px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #374151;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+}
+
+
+.system-controls button:active {
+
+    transform: scale(0.96);
+
+}
+
+
+/* =========================================
+   LOCK
+========================================= */
+
+.system-lock {
+
+    background: #2563eb !important;
+
+}
+
+
+/* =========================================
+   SLEEP
+========================================= */
+
+.system-sleep {
+
+    background: #4b5563 !important;
+
+}
+
+
+/* =========================================
+   SHOW DESKTOP
+========================================= */
+
+.system-desktop {
+
+    background: #059669 !important;
+
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+.system-restart {
+
+    background: #d97706 !important;
+
+}
+
+
+/* =========================================
+   SHUTDOWN
+========================================= */
+
+.system-shutdown {
+
+    background: #dc2626 !important;
+
+}

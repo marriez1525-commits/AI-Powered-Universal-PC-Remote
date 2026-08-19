@@ -24,6 +24,9 @@
     <!-- Media CSS -->
     <link rel="stylesheet" href="/style/media.css">
 
+    <!-- System CSS -->
+    <link rel="stylesheet" href="/style/system.css">
+
 </head>
 
 
@@ -159,8 +162,6 @@
 
         <section class="keyboard-section">
 
-            <!-- KEYBOARD TITLE -->
-
             <div class="keyboard-title">
 
                 <h2>
@@ -270,14 +271,12 @@
 
                 <div class="arrow-empty"></div>
 
-
                 <button
                     id="key-up"
                     type="button"
                 >
                     ↑
                 </button>
-
 
                 <div class="arrow-empty"></div>
 
@@ -316,8 +315,6 @@
 
         <section class="media-section">
 
-            <!-- MEDIA TITLE -->
-
             <div class="media-title">
 
                 <h2>
@@ -331,9 +328,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- MEDIA CONTROLS -->
-            <!-- ================================= -->
 
             <div class="media-controls">
 
@@ -364,9 +359,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- VOLUME CONTROLS -->
-            <!-- ================================= -->
 
             <div class="volume-controls">
 
@@ -398,6 +391,98 @@
 
         </section>
 
+
+        <!-- ================================= -->
+        <!-- SYSTEM CONTROL -->
+        <!-- ================================= -->
+
+        <section class="system-section">
+
+            <div class="system-title">
+
+                <h2>
+                    🖥️ PC Control
+                </h2>
+
+                <p>
+                    Control your computer system
+                </p>
+
+            </div>
+
+
+            <!-- SYSTEM CONTROLS -->
+
+            <div class="system-controls">
+
+                <!-- LOCK -->
+
+                <button
+                    id="system-lock"
+                    class="system-lock"
+                    type="button"
+                >
+                    🔒 Lock PC
+                </button>
+
+
+                <!-- SLEEP -->
+
+                <button
+                    id="system-sleep"
+                    class="system-sleep"
+                    type="button"
+                >
+                    🌙 Sleep
+                </button>
+
+
+                <!-- SHOW DESKTOP -->
+
+                <button
+                    id="system-show-desktop"
+                    class="system-desktop"
+                    type="button"
+                >
+                    🖥️ Show Desktop
+                </button>
+
+
+                <!-- MINIMIZE -->
+
+                <button
+                    id="system-minimize"
+                    type="button"
+                >
+                    📉 Minimize All
+                </button>
+
+
+                <!-- RESTART -->
+
+                <button
+                    id="system-restart"
+                    class="system-restart"
+                    type="button"
+                >
+                    🔄 Restart PC
+                </button>
+
+
+                <!-- SHUTDOWN -->
+
+                <button
+                    id="system-shutdown"
+                    class="system-shutdown"
+                    type="button"
+                >
+                    ⏻ Shutdown PC
+                </button>
+
+            </div>
+
+        </section>
+
     </main>
 
 </div>
@@ -414,6 +499,8 @@
 <script src="/js/keyboard.js"></script>
 
 <script src="/js/media.js"></script>
+
+<script src="/js/system.js"></script>
 
 
 </body>
