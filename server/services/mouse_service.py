@@ -22,3 +22,15 @@ class MouseService:
     @staticmethod
     def scroll(amount):
         pyautogui.scroll(amount)
+
+    # ==========================================
+    # DRAG
+    # ==========================================
+
+    @staticmethod
+    def drag_start():
+        pyautogui.mouseDown(button="left")
+
+    @staticmethod
+    def drag_end():
+        pyautogui.mouseUp(button="left")
