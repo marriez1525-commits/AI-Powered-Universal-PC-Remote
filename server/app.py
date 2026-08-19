@@ -3,6 +3,7 @@ import socket
 import os
 
 from routes.mouse import mouse_bp
+from routes.keyboard import keyboard_bp
 
 
 # ==========================================
@@ -25,7 +26,7 @@ JS_FOLDER = os.path.join(MOBILE_FOLDER, "js")
 app = Flask(__name__)
 
 app.register_blueprint(mouse_bp)
-
+app.register_blueprint(keyboard_bp)
 
 # ==========================================
 # MOBILE PAGE

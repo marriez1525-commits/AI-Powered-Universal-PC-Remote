@@ -1,0 +1,166 @@
+/* =========================================
+   KEYBOARD SECTION
+========================================= */
+
+.keyboard-section {
+    margin-top: 25px;
+    padding: 0 15px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.keyboard-title {
+    margin-bottom: 15px;
+}
+
+.keyboard-title h2 {
+    margin: 0 0 6px 0;
+    font-size: 25px;
+}
+
+.keyboard-title p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   TEXT INPUT
+========================================= */
+
+.keyboard-input {
+    width: 100%;
+    min-height: 100px;
+
+    box-sizing: border-box;
+
+    padding: 15px;
+
+    border: 2px solid #d1d5db;
+
+    border-radius: 15px;
+
+    font-size: 17px;
+
+    resize: none;
+
+    outline: none;
+
+    background: white;
+}
+
+.keyboard-input:focus {
+    border-color: #2563eb;
+}
+
+
+/* =========================================
+   SEND BUTTON
+========================================= */
+
+.keyboard-send {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+.keyboard-send:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   SPECIAL KEYS
+========================================= */
+
+.keyboard-special {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+
+.keyboard-special button {
+
+    padding: 13px 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #374151;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.keyboard-special button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================
+   ARROW KEYS
+========================================= */
+
+.arrow-keys {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+
+.arrow-keys button {
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4b5563;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* Empty grid spaces */
+
+.arrow-empty {
+    visibility: hidden;
+}
