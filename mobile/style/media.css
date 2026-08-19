@@ -1,0 +1,155 @@
+/* =========================================
+   MEDIA REMOTE
+========================================= */
+
+.media-section {
+
+    margin-top: 25px;
+
+    padding: 0 15px;
+
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.media-title {
+
+    margin-bottom: 15px;
+
+}
+
+
+.media-title h2 {
+
+    margin: 0 0 6px 0;
+
+    font-size: 25px;
+
+}
+
+
+.media-title p {
+
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   MEDIA CONTROLS
+========================================= */
+
+.media-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.media-controls button {
+
+    min-height: 60px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #374151;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+}
+
+
+.media-controls button:active {
+
+    transform: scale(0.96);
+
+}
+
+
+/* =========================================
+   PLAY BUTTON
+========================================= */
+
+.media-play {
+
+    grid-column:
+        span 3;
+
+    background: #2563eb !important;
+
+    font-size: 18px !important;
+
+}
+
+
+/* =========================================
+   VOLUME CONTROLS
+========================================= */
+
+.volume-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+.volume-controls button {
+
+    min-height: 55px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #4b5563;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+}
+
+
+.volume-controls button:active {
+
+    transform: scale(0.96);
+
+}
+
+
+/* =========================================
+   MUTE
+========================================= */
+
+.volume-mute {
+
+    background: #dc2626 !important;
+
+}
