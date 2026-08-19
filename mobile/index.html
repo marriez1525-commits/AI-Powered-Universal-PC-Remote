@@ -21,6 +21,9 @@
     <!-- Keyboard CSS -->
     <link rel="stylesheet" href="/style/keyboard.css">
 
+    <!-- Media CSS -->
+    <link rel="stylesheet" href="/style/media.css">
+
 </head>
 
 
@@ -98,9 +101,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- ACTUAL TOUCHPAD -->
-            <!-- ================================= -->
 
             <div
                 id="touchpad"
@@ -114,9 +115,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- MOUSE BUTTONS -->
-            <!-- ================================= -->
 
             <div class="mouse-buttons">
 
@@ -138,9 +137,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- DOUBLE CLICK -->
-            <!-- ================================= -->
 
             <div class="extra-controls">
 
@@ -177,9 +174,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- TEXT INPUT -->
-            <!-- ================================= -->
 
             <textarea
                 id="keyboard-input"
@@ -188,9 +183,7 @@
             ></textarea>
 
 
-            <!-- ================================= -->
             <!-- SEND BUTTON -->
-            <!-- ================================= -->
 
             <button
                 id="keyboard-send"
@@ -201,9 +194,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- SPECIAL KEYS -->
-            <!-- ================================= -->
 
             <div class="keyboard-special">
 
@@ -273,9 +264,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- ARROW KEYS -->
-            <!-- ================================= -->
 
             <div class="arrow-keys">
 
@@ -320,6 +309,95 @@
 
         </section>
 
+
+        <!-- ================================= -->
+        <!-- MEDIA REMOTE -->
+        <!-- ================================= -->
+
+        <section class="media-section">
+
+            <!-- MEDIA TITLE -->
+
+            <div class="media-title">
+
+                <h2>
+                    🎵 Media Remote
+                </h2>
+
+                <p>
+                    Control music and volume on your PC
+                </p>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- MEDIA CONTROLS -->
+            <!-- ================================= -->
+
+            <div class="media-controls">
+
+                <button
+                    id="media-previous"
+                    type="button"
+                >
+                    ⏮️ Previous
+                </button>
+
+
+                <button
+                    id="media-play-pause"
+                    class="media-play"
+                    type="button"
+                >
+                    ▶️ Play / Pause
+                </button>
+
+
+                <button
+                    id="media-next"
+                    type="button"
+                >
+                    ⏭️ Next
+                </button>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- VOLUME CONTROLS -->
+            <!-- ================================= -->
+
+            <div class="volume-controls">
+
+                <button
+                    id="volume-down"
+                    type="button"
+                >
+                    🔉 Volume -
+                </button>
+
+
+                <button
+                    id="volume-mute"
+                    class="volume-mute"
+                    type="button"
+                >
+                    🔇 Mute
+                </button>
+
+
+                <button
+                    id="volume-up"
+                    type="button"
+                >
+                    🔊 Volume +
+                </button>
+
+            </div>
+
+        </section>
+
     </main>
 
 </div>
@@ -334,6 +412,8 @@
 <script src="/js/touchpad.js"></script>
 
 <script src="/js/keyboard.js"></script>
+
+<script src="/js/media.js"></script>
 
 
 </body>
