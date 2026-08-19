@@ -5,6 +5,7 @@ import os
 from routes.mouse import mouse_bp
 from routes.keyboard import keyboard_bp
 from routes.media import media_bp
+from routes.system import system_bp
 
 
 # ==========================================
@@ -29,6 +30,7 @@ app = Flask(__name__)
 app.register_blueprint(mouse_bp)
 app.register_blueprint(keyboard_bp)
 app.register_blueprint(media_bp)
+app.register_blueprint(system_bp)
 
 # ==========================================
 # MOBILE PAGE
