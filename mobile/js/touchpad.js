@@ -1,23 +1,46 @@
 const touchpad = document.getElementById("touchpad");
 
+
+// ==========================================
+// VARIABLES
+// ==========================================
+
 let lastX = 0;
 let lastY = 0;
 
 let touchStartTime = 0;
+
 let moved = false;
 
 let lastTapTime = 0;
 
+let gestureType = "none";
 
-// ================================
+
+// ==========================================
+// SETTINGS
+// ==========================================
+
+// Cursor sensitivity
+const sensitivity = 4;
+
+// Minimum movement before scrolling
+const scrollThreshold = 2;
+
+// Scroll speed
+const scrollSpeed = 2;
+
+
+// ==========================================
 // MOUSE MOVEMENT
-// ================================
+// ==========================================
 
 async function moveMouse(dx, dy) {
 
     try {
 
         await fetch("/api/mouse/move", {
+
             method: "POST",
 
             headers: {
@@ -28,19 +51,24 @@ async function moveMouse(dx, dy) {
                 dx: dx,
                 dy: dy
             })
+
         });
 
     } catch (error) {
 
-        console.error("Mouse movement error:", error);
+        console.error(
+            "Mouse movement error:",
+            error
+        );
 
     }
+
 }
 
 
-// ================================
+// ==========================================
 // SCROLL
-// ================================
+// ==========================================
 
 async function scrollMouse(amount) {
 
@@ -62,15 +90,19 @@ async function scrollMouse(amount) {
 
     } catch (error) {
 
-        console.error("Scroll error:", error);
+        console.error(
+            "Scroll error:",
+            error
+        );
 
     }
+
 }
 
 
-// ================================
+// ==========================================
 // TOUCH START
-// ================================
+// ==========================================
 
 touchpad.addEventListener(
     "touchstart",
@@ -78,23 +110,65 @@ touchpad.addEventListener(
 
         event.preventDefault();
 
-        const touch = event.touches[0];
 
-        lastX = touch.clientX;
-        lastY = touch.clientY;
+        // ======================================
+        // TWO FINGER TOUCH
+        // ======================================
 
-        touchStartTime = Date.now();
+        if (event.touches.length === 2) {
 
-        moved = false;
+            gestureType = "scroll";
+
+            moved = true;
+
+
+            const touch1 = event.touches[0];
+            const touch2 = event.touches[1];
+
+
+            // Calculate CENTER between fingers
+
+            lastX =
+                (touch1.clientX + touch2.clientX) / 2;
+
+            lastY =
+                (touch1.clientY + touch2.clientY) / 2;
+
+
+            return;
+        }
+
+
+        // ======================================
+        // ONE FINGER TOUCH
+        // ======================================
+
+        if (event.touches.length === 1) {
+
+            gestureType = "mouse";
+
+            moved = false;
+
+
+            const touch = event.touches[0];
+
+
+            lastX = touch.clientX;
+            lastY = touch.clientY;
+
+
+            touchStartTime = Date.now();
+
+        }
 
     },
     { passive: false }
 );
 
 
-// ================================
+// ==========================================
 // TOUCH MOVE
-// ================================
+// ==========================================
 
 touchpad.addEventListener(
     "touchmove",
@@ -103,59 +177,83 @@ touchpad.addEventListener(
         event.preventDefault();
 
 
-        // =====================================
-        // TWO FINGER MOVEMENT = SCROLL
-        // =====================================
+        // ======================================
+        // TWO FINGER SCROLL
+        // ======================================
 
         if (event.touches.length === 2) {
+
+            gestureType = "scroll";
+
+            moved = true;
+
 
             const touch1 = event.touches[0];
             const touch2 = event.touches[1];
 
 
-            const centerY =
-                (touch1.clientY + touch2.clientY) / 2;
+            // Find center of the two fingers
 
             const centerX =
                 (touch1.clientX + touch2.clientX) / 2;
 
+            const centerY =
+                (touch1.clientY + touch2.clientY) / 2;
+
 
             const dy = centerY - lastY;
-            const dx = centerX - lastX;
 
 
-            // Vertical scrolling
-            if (Math.abs(dy) > 2) {
+            // Only vertical scrolling
 
-                const scrollAmount =
-                    dy > 0 ? -1 : 1;
+            if (Math.abs(dy) >= scrollThreshold) {
 
-                scrollMouse(scrollAmount * 2);
+                if (dy < 0) {
+
+                    // Fingers moving UP
+                    scrollMouse(scrollSpeed);
+
+                } else {
+
+                    // Fingers moving DOWN
+                    scrollMouse(-scrollSpeed);
+
+                }
 
             }
 
 
+            // Update center position
+
             lastX = centerX;
             lastY = centerY;
+
 
             return;
         }
 
 
-        // =====================================
-        // ONE FINGER = CURSOR MOVEMENT
-        // =====================================
+        // ======================================
+        // ONE FINGER CURSOR MOVEMENT
+        // ======================================
 
-        if (event.touches.length === 1) {
+        if (
+            event.touches.length === 1 &&
+            gestureType === "mouse"
+        ) {
 
             const touch = event.touches[0];
+
 
             const currentX = touch.clientX;
             const currentY = touch.clientY;
 
 
-            const rawDX = currentX - lastX;
-            const rawDY = currentY - lastY;
+            const rawDX =
+                currentX - lastX;
+
+            const rawDY =
+                currentY - lastY;
 
 
             if (
@@ -164,10 +262,6 @@ touchpad.addEventListener(
             ) {
 
                 moved = true;
-
-
-                // Mouse sensitivity
-                const sensitivity = 1.8;
 
 
                 const dx =
@@ -192,9 +286,9 @@ touchpad.addEventListener(
 );
 
 
-// ================================
+// ==========================================
 // TOUCH END
-// ================================
+// ==========================================
 
 touchpad.addEventListener(
     "touchend",
@@ -203,24 +297,63 @@ touchpad.addEventListener(
         event.preventDefault();
 
 
-        // Don't click if there was movement
-        if (moved) {
+        // ======================================
+        // IGNORE UNTIL ALL FINGERS ARE RELEASED
+        // ======================================
+
+        if (event.touches.length > 0) {
+
             return;
+
         }
 
+
+        // ======================================
+        // TWO-FINGER GESTURE
+        // ======================================
+
+        if (gestureType === "scroll") {
+
+            gestureType = "none";
+
+            moved = false;
+
+            return;
+
+        }
+
+
+        // ======================================
+        // MOVED FINGER = NO CLICK
+        // ======================================
+
+        if (moved) {
+
+            gestureType = "none";
+
+            return;
+
+        }
+
+
+        // ======================================
+        // SHORT TAP = CLICK
+        // ======================================
 
         const duration =
             Date.now() - touchStartTime;
 
 
-        // Only short tap
         if (duration < 300) {
 
             const currentTime =
                 Date.now();
 
 
-            // Double tap detection
+            // ==================================
+            // DOUBLE TAP
+            // ==================================
+
             if (
                 currentTime - lastTapTime < 350
             ) {
@@ -229,7 +362,13 @@ touchpad.addEventListener(
 
                 lastTapTime = 0;
 
-            } else {
+            }
+
+            // ==================================
+            // SINGLE TAP
+            // ==================================
+
+            else {
 
                 leftClick();
 
@@ -239,14 +378,17 @@ touchpad.addEventListener(
 
         }
 
+
+        gestureType = "none";
+
     },
     { passive: false }
 );
 
 
-// ================================
+// ==========================================
 // LEFT CLICK
-// ================================
+// ==========================================
 
 async function leftClick() {
 
@@ -271,9 +413,9 @@ async function leftClick() {
 }
 
 
-// ================================
+// ==========================================
 // RIGHT CLICK
-// ================================
+// ==========================================
 
 async function rightClick() {
 
@@ -298,9 +440,9 @@ async function rightClick() {
 }
 
 
-// ================================
+// ==========================================
 // DOUBLE CLICK
-// ================================
+// ==========================================
 
 async function doubleClick() {
 
@@ -325,9 +467,9 @@ async function doubleClick() {
 }
 
 
-// ================================
+// ==========================================
 // BUTTONS
-// ================================
+// ==========================================
 
 document
     .getElementById("left-click")
