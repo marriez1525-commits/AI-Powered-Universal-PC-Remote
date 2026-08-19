@@ -16,6 +16,10 @@ let lastTapTime = 0;
 
 let gestureType = "none";
 
+// Drag variables
+let holdTimer = null;
+let isDragging = false;
+
 
 // ==========================================
 // SETTINGS
@@ -29,6 +33,9 @@ const scrollThreshold = 2;
 
 // Scroll speed
 const scrollSpeed = 8;
+
+// Time required to activate drag
+const dragHoldTime = 500;
 
 
 // ==========================================
@@ -101,6 +108,68 @@ async function scrollMouse(amount) {
 
 
 // ==========================================
+// DRAG START
+// ==========================================
+
+async function dragStart() {
+
+    try {
+
+        await fetch(
+            "/api/mouse/drag-start",
+            {
+                method: "POST"
+            }
+        );
+
+        isDragging = true;
+
+        console.log("Drag started");
+
+    } catch (error) {
+
+        console.error(
+            "Drag start error:",
+            error
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// DRAG END
+// ==========================================
+
+async function dragEnd() {
+
+    try {
+
+        await fetch(
+            "/api/mouse/drag-end",
+            {
+                method: "POST"
+            }
+        );
+
+        isDragging = false;
+
+        console.log("Drag ended");
+
+    } catch (error) {
+
+        console.error(
+            "Drag end error:",
+            error
+        );
+
+    }
+
+}
+
+
+// ==========================================
 // TOUCH START
 // ==========================================
 
@@ -116,6 +185,15 @@ touchpad.addEventListener(
         // ======================================
 
         if (event.touches.length === 2) {
+
+            // Cancel possible drag timer
+
+            clearTimeout(holdTimer);
+
+            holdTimer = null;
+
+            isDragging = false;
+
 
             gestureType = "scroll";
 
@@ -149,6 +227,8 @@ touchpad.addEventListener(
 
             moved = false;
 
+            isDragging = false;
+
 
             const touch = event.touches[0];
 
@@ -158,6 +238,34 @@ touchpad.addEventListener(
 
 
             touchStartTime = Date.now();
+
+
+            // ==================================
+            // START DRAG HOLD TIMER
+            // ==================================
+
+            clearTimeout(holdTimer);
+
+
+            holdTimer = setTimeout(
+                function() {
+
+                    // Only start drag if:
+                    // - still one finger
+                    // - finger hasn't moved
+
+                    if (
+                        !moved &&
+                        gestureType === "mouse"
+                    ) {
+
+                        dragStart();
+
+                    }
+
+                },
+                dragHoldTime
+            );
 
         }
 
@@ -183,6 +291,13 @@ touchpad.addEventListener(
 
         if (event.touches.length === 2) {
 
+            // Cancel drag
+
+            clearTimeout(holdTimer);
+
+            holdTimer = null;
+
+
             gestureType = "scroll";
 
             moved = true;
@@ -201,21 +316,26 @@ touchpad.addEventListener(
                 (touch1.clientY + touch2.clientY) / 2;
 
 
-            const dy = centerY - lastY;
+            const dy =
+                centerY - lastY;
 
 
             // Only vertical scrolling
 
-            if (Math.abs(dy) >= scrollThreshold) {
+            if (
+                Math.abs(dy) >= scrollThreshold
+            ) {
 
                 if (dy < 0) {
 
                     // Fingers moving UP
+
                     scrollMouse(scrollSpeed);
 
                 } else {
 
                     // Fingers moving DOWN
+
                     scrollMouse(-scrollSpeed);
 
                 }
@@ -234,7 +354,7 @@ touchpad.addEventListener(
 
 
         // ======================================
-        // ONE FINGER CURSOR MOVEMENT
+        // ONE FINGER CURSOR / DRAG
         // ======================================
 
         if (
@@ -245,8 +365,11 @@ touchpad.addEventListener(
             const touch = event.touches[0];
 
 
-            const currentX = touch.clientX;
-            const currentY = touch.clientY;
+            const currentX =
+                touch.clientX;
+
+            const currentY =
+                touch.clientY;
 
 
             const rawDX =
@@ -263,6 +386,23 @@ touchpad.addEventListener(
 
                 moved = true;
 
+
+                // ==================================
+                // CANCEL HOLD IF NOT DRAGGING
+                // ==================================
+
+                if (!isDragging) {
+
+                    clearTimeout(holdTimer);
+
+                    holdTimer = null;
+
+                }
+
+
+                // ==================================
+                // CURSOR MOVEMENT
+                // ==================================
 
                 const dx =
                     rawDX * sensitivity;
@@ -298,7 +438,16 @@ touchpad.addEventListener(
 
 
         // ======================================
-        // IGNORE UNTIL ALL FINGERS ARE RELEASED
+        // CANCEL HOLD TIMER
+        // ======================================
+
+        clearTimeout(holdTimer);
+
+        holdTimer = null;
+
+
+        // ======================================
+        // WAIT FOR ALL FINGERS
         // ======================================
 
         if (event.touches.length > 0) {
@@ -309,7 +458,24 @@ touchpad.addEventListener(
 
 
         // ======================================
-        // TWO-FINGER GESTURE
+        // END DRAG
+        // ======================================
+
+        if (isDragging) {
+
+            dragEnd();
+
+            gestureType = "none";
+
+            moved = false;
+
+            return;
+
+        }
+
+
+        // ======================================
+        // TWO FINGER SCROLL
         // ======================================
 
         if (gestureType === "scroll") {

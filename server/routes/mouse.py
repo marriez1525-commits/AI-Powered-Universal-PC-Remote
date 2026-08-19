@@ -10,12 +10,17 @@ mouse_bp = Blueprint(
 )
 
 
+# ==========================================
+# MOVE
+# ==========================================
+
 @mouse_bp.route("/move", methods=["POST"])
 def move_mouse():
 
     data = request.get_json(silent=True) or {}
 
     try:
+
         dx = float(data.get("dx", 0))
         dy = float(data.get("dy", 0))
 
@@ -36,6 +41,10 @@ def move_mouse():
         }), 400
 
 
+# ==========================================
+# LEFT CLICK
+# ==========================================
+
 @mouse_bp.route("/click", methods=["POST"])
 def left_click():
 
@@ -46,6 +55,10 @@ def left_click():
         "action": "left_click"
     })
 
+
+# ==========================================
+# RIGHT CLICK
+# ==========================================
 
 @mouse_bp.route("/right-click", methods=["POST"])
 def right_click():
@@ -58,6 +71,10 @@ def right_click():
     })
 
 
+# ==========================================
+# DOUBLE CLICK
+# ==========================================
+
 @mouse_bp.route("/double-click", methods=["POST"])
 def double_click():
 
@@ -68,6 +85,10 @@ def double_click():
         "action": "double_click"
     })
 
+
+# ==========================================
+# SCROLL
+# ==========================================
 
 @mouse_bp.route("/scroll", methods=["POST"])
 def scroll():
@@ -93,3 +114,33 @@ def scroll():
             "success": False,
             "error": "Invalid scroll amount"
         }), 400
+
+
+# ==========================================
+# DRAG START
+# ==========================================
+
+@mouse_bp.route("/drag-start", methods=["POST"])
+def drag_start():
+
+    MouseService.drag_start()
+
+    return jsonify({
+        "success": True,
+        "action": "drag_start"
+    })
+
+
+# ==========================================
+# DRAG END
+# ==========================================
+
+@mouse_bp.route("/drag-end", methods=["POST"])
+def drag_end():
+
+    MouseService.drag_end()
+
+    return jsonify({
+        "success": True,
+        "action": "drag_end"
+    })
