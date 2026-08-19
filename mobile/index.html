@@ -18,6 +18,9 @@
     <!-- Touchpad CSS -->
     <link rel="stylesheet" href="/style/touchpad.css">
 
+    <!-- Keyboard CSS -->
+    <link rel="stylesheet" href="/style/keyboard.css">
+
 </head>
 
 
@@ -152,6 +155,171 @@
 
         </section>
 
+
+        <!-- ================================= -->
+        <!-- KEYBOARD -->
+        <!-- ================================= -->
+
+        <section class="keyboard-section">
+
+            <!-- KEYBOARD TITLE -->
+
+            <div class="keyboard-title">
+
+                <h2>
+                    ⌨️ Keyboard
+                </h2>
+
+                <p>
+                    Type and control your PC keyboard
+                </p>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- TEXT INPUT -->
+            <!-- ================================= -->
+
+            <textarea
+                id="keyboard-input"
+                class="keyboard-input"
+                placeholder="Type something for your PC..."
+            ></textarea>
+
+
+            <!-- ================================= -->
+            <!-- SEND BUTTON -->
+            <!-- ================================= -->
+
+            <button
+                id="keyboard-send"
+                class="keyboard-send"
+                type="button"
+            >
+                Send to PC
+            </button>
+
+
+            <!-- ================================= -->
+            <!-- SPECIAL KEYS -->
+            <!-- ================================= -->
+
+            <div class="keyboard-special">
+
+                <button
+                    id="key-esc"
+                    type="button"
+                >
+                    ESC
+                </button>
+
+
+                <button
+                    id="key-tab"
+                    type="button"
+                >
+                    TAB
+                </button>
+
+
+                <button
+                    id="key-enter"
+                    type="button"
+                >
+                    ENTER
+                </button>
+
+
+                <button
+                    id="key-backspace"
+                    type="button"
+                >
+                    BACKSPACE
+                </button>
+
+
+                <button
+                    id="key-delete"
+                    type="button"
+                >
+                    DELETE
+                </button>
+
+
+                <button
+                    id="hotkey-copy"
+                    type="button"
+                >
+                    CTRL + C
+                </button>
+
+
+                <button
+                    id="hotkey-paste"
+                    type="button"
+                >
+                    CTRL + V
+                </button>
+
+
+                <button
+                    id="hotkey-select-all"
+                    type="button"
+                >
+                    CTRL + A
+                </button>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- ARROW KEYS -->
+            <!-- ================================= -->
+
+            <div class="arrow-keys">
+
+                <div class="arrow-empty"></div>
+
+
+                <button
+                    id="key-up"
+                    type="button"
+                >
+                    ↑
+                </button>
+
+
+                <div class="arrow-empty"></div>
+
+
+                <button
+                    id="key-left"
+                    type="button"
+                >
+                    ←
+                </button>
+
+
+                <button
+                    id="key-down"
+                    type="button"
+                >
+                    ↓
+                </button>
+
+
+                <button
+                    id="key-right"
+                    type="button"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </section>
+
     </main>
 
 </div>
@@ -164,6 +332,8 @@
 <script src="/js/app.js"></script>
 
 <script src="/js/touchpad.js"></script>
+
+<script src="/js/keyboard.js"></script>
 
 
 </body>
