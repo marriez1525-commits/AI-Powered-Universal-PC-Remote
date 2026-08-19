@@ -28,7 +28,7 @@ const sensitivity = 4;
 const scrollThreshold = 2;
 
 // Scroll speed
-const scrollSpeed = 2;
+const scrollSpeed = 8;
 
 
 // ==========================================
