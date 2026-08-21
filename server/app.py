@@ -6,6 +6,7 @@ from routes.mouse import mouse_bp
 from routes.keyboard import keyboard_bp
 from routes.media import media_bp
 from routes.system import system_bp
+from routes.apps import apps_bp
 
 
 # ==========================================
@@ -31,6 +32,7 @@ app.register_blueprint(mouse_bp)
 app.register_blueprint(keyboard_bp)
 app.register_blueprint(media_bp)
 app.register_blueprint(system_bp)
+app.register_blueprint(apps_bp)
 
 # ==========================================
 # MOBILE PAGE
