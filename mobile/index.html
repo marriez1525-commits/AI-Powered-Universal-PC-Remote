@@ -12,6 +12,11 @@
 
     <title>PCPilot</title>
 
+
+    <!-- ================================= -->
+    <!-- CSS FILES -->
+    <!-- ================================= -->
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="/style/style.css">
 
@@ -27,12 +32,16 @@
     <!-- System CSS -->
     <link rel="stylesheet" href="/style/system.css">
 
+    <!-- Applications CSS -->
+    <link rel="stylesheet" href="/style/apps.css">
+
 </head>
 
 
 <body>
 
 <div class="app">
+
 
     <!-- ================================= -->
     <!-- HEADER -->
@@ -56,6 +65,7 @@
     <!-- ================================= -->
 
     <main>
+
 
         <!-- ================================= -->
         <!-- CONNECTION CARD -->
@@ -85,6 +95,7 @@
         </section>
 
 
+
         <!-- ================================= -->
         <!-- TOUCHPAD -->
         <!-- ================================= -->
@@ -104,7 +115,7 @@
             </div>
 
 
-            <!-- ACTUAL TOUCHPAD -->
+            <!-- TOUCHPAD -->
 
             <div
                 id="touchpad"
@@ -154,6 +165,7 @@
             </div>
 
         </section>
+
 
 
         <!-- ================================= -->
@@ -271,12 +283,14 @@
 
                 <div class="arrow-empty"></div>
 
+
                 <button
                     id="key-up"
                     type="button"
                 >
                     ↑
                 </button>
+
 
                 <div class="arrow-empty"></div>
 
@@ -307,6 +321,7 @@
             </div>
 
         </section>
+
 
 
         <!-- ================================= -->
@@ -392,6 +407,7 @@
         </section>
 
 
+
         <!-- ================================= -->
         <!-- SYSTEM CONTROL -->
         <!-- ================================= -->
@@ -411,9 +427,8 @@
             </div>
 
 
-            <!-- SYSTEM CONTROLS -->
-
             <div class="system-controls">
+
 
                 <!-- LOCK -->
 
@@ -483,9 +498,136 @@
 
         </section>
 
+
+
+        <!-- ================================= -->
+        <!-- APPLICATION LAUNCHER -->
+        <!-- ================================= -->
+
+        <section class="apps-section">
+
+            <div class="apps-title">
+
+                <h2>
+                    🚀 Applications
+                </h2>
+
+                <p>
+                    Launch applications on your PC
+                </p>
+
+            </div>
+
+
+            <!-- APPLICATION GRID -->
+
+            <div class="apps-grid">
+
+
+                <!-- CHROME -->
+
+                <button
+                    id="app-chrome"
+                    class="app-button app-chrome"
+                    type="button"
+                >
+
+                    <span class="app-icon">
+                        🌐
+                    </span>
+
+                    <span>
+                        Chrome
+                    </span>
+
+                </button>
+
+
+                <!-- VS CODE -->
+
+                <button
+                    id="app-vscode"
+                    class="app-button app-vscode"
+                    type="button"
+                >
+
+                    <span class="app-icon">
+                        💻
+                    </span>
+
+                    <span>
+                        VS Code
+                    </span>
+
+                </button>
+
+
+                <!-- NOTEPAD -->
+
+                <button
+                    id="app-notepad"
+                    class="app-button app-notepad"
+                    type="button"
+                >
+
+                    <span class="app-icon">
+                        📝
+                    </span>
+
+                    <span>
+                        Notepad
+                    </span>
+
+                </button>
+
+
+                <!-- CALCULATOR -->
+
+                <button
+                    id="app-calculator"
+                    class="app-button app-calculator"
+                    type="button"
+                >
+
+                    <span class="app-icon">
+                        🧮
+                    </span>
+
+                    <span>
+                        Calculator
+                    </span>
+
+                </button>
+
+
+                <!-- FILE EXPLORER -->
+
+                <button
+                    id="app-explorer"
+                    class="app-button app-explorer"
+                    type="button"
+                >
+
+                    <span class="app-icon">
+                        📁
+                    </span>
+
+                    <span>
+                        File Explorer
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
     </main>
 
 </div>
+
 
 
 <!-- ================================= -->
@@ -501,6 +643,8 @@
 <script src="/js/media.js"></script>
 
 <script src="/js/system.js"></script>
+
+<script src="/js/apps.js"></script>
 
 
 </body>
