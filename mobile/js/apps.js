@@ -5,29 +5,40 @@
 
 async function launchApplication(appName) {
 
-    console.log("Launching:", appName);
+    console.log(
+        "Launching:",
+        appName
+    );
+
 
     try {
 
-        const response = await fetch(
-            "/api/apps/launch",
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                "/api/apps/launch",
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
-                    app: appName
-                })
-            }
+                    body: JSON.stringify({
+                        app: appName
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Server response:",
+            data
         );
-
-
-        const data = await response.json();
-
-        console.log("Server response:", data);
 
 
         if (!data.success) {
@@ -44,11 +55,12 @@ async function launchApplication(appName) {
 
 
         console.log(
-            appName + " launched successfully"
+            appName +
+            " launched successfully"
         );
 
-
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "Application launch error:",
@@ -61,11 +73,12 @@ async function launchApplication(appName) {
         );
 
     }
+
 }
 
 
 // ==========================================
-// BUTTONS
+// APPLICATION BUTTONS
 // ==========================================
 
 document.addEventListener(
@@ -73,27 +86,15 @@ document.addEventListener(
     function () {
 
 
-        const notepad =
-            document.getElementById("app-notepad");
-
-
-        const calculator =
-            document.getElementById("app-calculator");
-
-
-        const explorer =
-            document.getElementById("app-explorer");
-
-
-        const chrome =
-            document.getElementById("app-chrome");
-
-
-        const vscode =
-            document.getElementById("app-vscode");
-
-
+        // ==================================
         // NOTEPAD
+        // ==================================
+
+        const notepad =
+            document.getElementById(
+                "app-notepad"
+            );
+
 
         if (notepad) {
 
@@ -101,7 +102,9 @@ document.addEventListener(
                 "click",
                 function () {
 
-                    launchApplication("notepad");
+                    launchApplication(
+                        "notepad"
+                    );
 
                 }
             );
@@ -109,7 +112,15 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // CALCULATOR
+        // ==================================
+
+        const calculator =
+            document.getElementById(
+                "app-calculator"
+            );
+
 
         if (calculator) {
 
@@ -117,7 +128,9 @@ document.addEventListener(
                 "click",
                 function () {
 
-                    launchApplication("calculator");
+                    launchApplication(
+                        "calculator"
+                    );
 
                 }
             );
@@ -125,7 +138,15 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // FILE EXPLORER
+        // ==================================
+
+        const explorer =
+            document.getElementById(
+                "app-explorer"
+            );
+
 
         if (explorer) {
 
@@ -133,7 +154,9 @@ document.addEventListener(
                 "click",
                 function () {
 
-                    launchApplication("explorer");
+                    launchApplication(
+                        "explorer"
+                    );
 
                 }
             );
@@ -141,7 +164,15 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // CHROME
+        // ==================================
+
+        const chrome =
+            document.getElementById(
+                "app-chrome"
+            );
+
 
         if (chrome) {
 
@@ -149,7 +180,9 @@ document.addEventListener(
                 "click",
                 function () {
 
-                    launchApplication("chrome");
+                    launchApplication(
+                        "chrome"
+                    );
 
                 }
             );
@@ -157,7 +190,15 @@ document.addEventListener(
         }
 
 
+        // ==================================
         // VS CODE
+        // ==================================
+
+        const vscode =
+            document.getElementById(
+                "app-vscode"
+            );
+
 
         if (vscode) {
 
@@ -165,7 +206,9 @@ document.addEventListener(
                 "click",
                 function () {
 
-                    launchApplication("vscode");
+                    launchApplication(
+                        "vscode"
+                    );
 
                 }
             );
