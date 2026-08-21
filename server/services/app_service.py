@@ -95,47 +95,55 @@ class AppService:
 
         app_name = app_name.lower().strip()
 
+    # ==========================================
+    # SPECIAL CASE: WINDOWS EXPLORER
+    # ======  ====================================
+
+        if app_name == "explorer":
+
+            raise ValueError(
+            "File Explorer cannot be closed from PCPilot "
+            "because Windows Explorer also controls the desktop."
+        )
+
 
         if app_name not in AppService.PROCESS_NAMES:
 
             raise ValueError(
-                "Application is not available"
-            )
+            "Application is not available"
+        )
 
 
-        process_name = \
-            AppService.PROCESS_NAMES[app_name]
+        process_name = AppService.PROCESS_NAMES[app_name]
 
 
         print(
-            "Closing:",
-            process_name
-        )
+        "Closing:",
+        process_name
+    )
 
 
         result = subprocess.run(
-            [
-                "taskkill",
-                "/IM",
-                process_name,
-                "/F"
-            ],
-            capture_output=True,
-            text=True
-        )
+        [
+            "taskkill",
+            "/IM",
+            process_name,
+            "/F"
+        ],
+        capture_output=True,
+        text=True
+    )
 
 
         if result.returncode != 0:
 
-            raise ValueError(
-                app_name.capitalize() +
-                " is not running"
-            )
+           raise ValueError(
+            app_name.capitalize() +
+            " is not running"
+        )
 
 
         return True
-
-
     # ==========================================
     # CHECK IF APPLICATION IS RUNNING
     # ==========================================
