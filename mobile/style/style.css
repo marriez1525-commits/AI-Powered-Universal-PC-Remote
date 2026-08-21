@@ -1,3 +1,7 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,6 +20,11 @@ body {
     min-height: 100vh;
     background: white;
 }
+
+
+/* =========================================
+   HEADER
+========================================= */
 
 header {
     padding: 25px 20px;
@@ -38,9 +47,19 @@ header p {
     font-size: 14px;
 }
 
+
+/* =========================================
+   MAIN
+========================================= */
+
 main {
     padding: 20px;
 }
+
+
+/* =========================================
+   WELCOME CARD
+========================================= */
 
 .welcome-card {
     padding: 25px;
@@ -68,4 +87,369 @@ main {
 
 #status-icon {
     margin-right: 8px;
+}
+
+
+/* =========================================
+   SYSTEM CONTROL
+========================================= */
+
+.system-section {
+    margin-top: 25px;
+    padding: 0 15px;
+}
+
+.system-title {
+    margin-bottom: 15px;
+}
+
+.system-title h2 {
+    margin: 0 0 6px 0;
+    font-size: 25px;
+}
+
+.system-title p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SYSTEM BUTTONS
+========================================= */
+
+.system-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.system-controls button {
+    min-height: 60px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #374151;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease,
+                opacity 0.1s ease;
+}
+
+.system-controls button:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   SYSTEM BUTTON COLORS
+========================================= */
+
+.system-lock {
+    background: #2563eb !important;
+}
+
+.system-sleep {
+    background: #4b5563 !important;
+}
+
+.system-desktop {
+    background: #059669 !important;
+}
+
+.system-restart {
+    background: #d97706 !important;
+}
+
+.system-shutdown {
+    background: #dc2626 !important;
+}
+
+
+/* =========================================
+   APPLICATIONS
+========================================= */
+
+.apps-section {
+    margin-top: 25px;
+    padding: 0 15px;
+}
+
+.apps-title {
+    margin-bottom: 15px;
+}
+
+.apps-title h2 {
+    margin: 0 0 6px 0;
+    font-size: 25px;
+}
+
+.apps-title p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   APPLICATION GRID
+========================================= */
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+
+/* =========================================
+   APPLICATION BUTTONS
+========================================= */
+
+.app-button {
+    min-height: 60px;
+
+    border: none;
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    transition: transform 0.1s ease,
+                opacity 0.1s ease;
+}
+
+.app-button:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+.app-icon {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   APPLICATION COLORS
+========================================= */
+
+.app-chrome {
+    background: #2563eb !important;
+}
+
+.app-vscode {
+    background: #374151 !important;
+}
+
+.app-notepad {
+    background: #059669 !important;
+}
+
+.app-calculator {
+    background: #d97706 !important;
+}
+
+.app-explorer {
+    background: #4b5563 !important;
+}
+
+
+/* =========================================
+   APPLICATION MANAGER
+========================================= */
+
+.app-manager-section {
+    margin-top: 25px;
+    padding: 0 15px;
+}
+
+.app-manager-title {
+    margin-bottom: 15px;
+}
+
+.app-manager-title h2 {
+    margin: 0 0 6px 0;
+    font-size: 25px;
+}
+
+.app-manager-title p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   APPLICATION STATUS LIST
+========================================= */
+
+.app-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-status-item {
+    min-height: 60px;
+
+    padding: 0 15px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 16px;
+}
+
+.app-status {
+    font-weight: bold;
+}
+
+.app-status.running {
+    color: #059669;
+}
+
+.app-status.stopped {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   CLOSE APP CONTROLS
+========================================= */
+
+.close-app-controls {
+    margin-top: 15px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+#close-app-selector {
+    min-height: 55px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #f1f5f9;
+
+    padding: 10px;
+
+    font-size: 14px;
+}
+
+#close-app {
+    min-height: 55px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease,
+                opacity 0.1s ease;
+}
+
+#close-app:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   REFRESH BUTTON
+========================================= */
+
+.refresh-apps {
+    width: 100%;
+
+    min-height: 55px;
+
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #374151;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease,
+                opacity 0.1s ease;
+}
+
+.refresh-apps:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 15px;
+    }
+
+    .system-section,
+    .apps-section,
+    .app-manager-section {
+        padding: 0 5px;
+    }
+
+    .system-controls,
+    .apps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .system-controls button,
+    .app-button {
+        min-height: 60px;
+        font-size: 15px;
+    }
+
 }
