@@ -1,6 +1,14 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import (
+    Flask,
+    send_from_directory,
+    jsonify,
+    request,
+    session
+)
+
 import socket
 import os
+import secrets
 
 from routes.mouse import mouse_bp
 from routes.keyboard import keyboard_bp
@@ -13,13 +21,36 @@ from routes.apps import apps_bp
 # PROJECT PATHS
 # ==========================================
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))
+)
 
-MOBILE_FOLDER = os.path.join(BASE_DIR, "mobile")
+MOBILE_FOLDER = os.path.join(
+    BASE_DIR,
+    "mobile"
+)
 
-STYLE_FOLDER = os.path.join(MOBILE_FOLDER, "style")
+STYLE_FOLDER = os.path.join(
+    MOBILE_FOLDER,
+    "style"
+)
 
-JS_FOLDER = os.path.join(MOBILE_FOLDER, "js")
+JS_FOLDER = os.path.join(
+    MOBILE_FOLDER,
+    "js"
+)
+
+
+# ==========================================
+# SECURITY SETTINGS
+# ==========================================
+
+# Change this PIN to whatever you want.
+# Example: "2580"
+PCPILOT_PIN = os.environ.get(
+    "PCPILOT_PIN",
+    "2580"
+)
 
 
 # ==========================================
@@ -28,11 +59,119 @@ JS_FOLDER = os.path.join(MOBILE_FOLDER, "js")
 
 app = Flask(__name__)
 
+
+# Secret key is required for Flask sessions.
+# It is generated when the server starts.
+app.secret_key = os.environ.get(
+    "PCPILOT_SECRET_KEY",
+    secrets.token_hex(32)
+)
+
+
+# ==========================================
+# REGISTER BLUEPRINTS
+# ==========================================
+
 app.register_blueprint(mouse_bp)
 app.register_blueprint(keyboard_bp)
 app.register_blueprint(media_bp)
 app.register_blueprint(system_bp)
 app.register_blueprint(apps_bp)
+
+
+# ==========================================
+# AUTHENTICATION MIDDLEWARE
+# ==========================================
+
+@app.before_request
+def protect_api():
+
+    path = request.path
+
+    # --------------------------------------
+    # Public API routes
+    # --------------------------------------
+
+    public_routes = [
+        "/api/auth/login",
+        "/api/auth/logout",
+        "/api/auth/status",
+        "/api/status"
+    ]
+
+    if path in public_routes:
+        return None
+
+    # --------------------------------------
+    # Protect all other API routes
+    # --------------------------------------
+
+    if path.startswith("/api/"):
+
+        if not session.get("authenticated"):
+
+            return jsonify({
+                "success": False,
+                "error": "Authentication required"
+            }), 401
+
+    return None
+
+
+# ==========================================
+# LOGIN
+# ==========================================
+
+@app.route("/api/auth/login", methods=["POST"])
+def login():
+
+    data = request.get_json(silent=True) or {}
+
+    pin = str(data.get("pin", ""))
+
+    if pin == PCPILOT_PIN:
+
+        session["authenticated"] = True
+
+        return jsonify({
+            "success": True,
+            "message": "Authentication successful"
+        })
+
+    return jsonify({
+        "success": False,
+        "error": "Incorrect PIN"
+    }), 401
+
+
+# ==========================================
+# LOGOUT
+# ==========================================
+
+@app.route("/api/auth/logout", methods=["POST"])
+def logout():
+
+    session.clear()
+
+    return jsonify({
+        "success": True,
+        "message": "Logged out successfully"
+    })
+
+
+# ==========================================
+# AUTHENTICATION STATUS
+# ==========================================
+
+@app.route("/api/auth/status")
+def auth_status():
+
+    return jsonify({
+        "authenticated": bool(
+            session.get("authenticated")
+        )
+    })
+
 
 # ==========================================
 # MOBILE PAGE
@@ -127,8 +266,20 @@ if __name__ == "__main__":
     print("\n===================================")
     print("       PCPilot Server Started")
     print("===================================")
-    print(f"PC Address: http://{ip}:5000")
-    print("Open this address on your phone.")
+
+    print(
+        f"PC Address: http://{ip}:5000"
+    )
+
+    print(
+        "PCPilot PIN: "
+        + PCPILOT_PIN
+    )
+
+    print(
+        "Open this address on your phone."
+    )
+
     print("===================================\n")
 
     app.run(
