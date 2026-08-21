@@ -1,7 +1,11 @@
 // ==========================================
-// PCPILOT APPLICATION LAUNCHER
+// PCPILOT APPLICATION MANAGER
 // ==========================================
 
+
+// ==========================================
+// LAUNCH APPLICATION
+// ==========================================
 
 async function launchApplication(appName) {
 
@@ -36,7 +40,7 @@ async function launchApplication(appName) {
 
 
         console.log(
-            "Server response:",
+            "Launch response:",
             data
         );
 
@@ -54,16 +58,13 @@ async function launchApplication(appName) {
         }
 
 
-        console.log(
-            appName +
-            " launched successfully"
-        );
+        updateApplicationStatus();
 
     }
     catch (error) {
 
         console.error(
-            "Application launch error:",
+            "Launch error:",
             error
         );
 
@@ -77,18 +78,189 @@ async function launchApplication(appName) {
 }
 
 
+
 // ==========================================
-// APPLICATION BUTTONS
+// CLOSE APPLICATION
+// ==========================================
+
+async function closeApplication(appName) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to close " +
+            appName +
+            "?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    console.log(
+        "Closing:",
+        appName
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/apps/close",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        app: appName
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Close response:",
+            data
+        );
+
+
+        if (!data.success) {
+
+            alert(
+                data.error
+            );
+
+            return;
+        }
+
+
+        updateApplicationStatus();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Close error:",
+            error
+        );
+
+
+        alert(
+            "Could not connect to PCPilot server."
+        );
+
+    }
+
+}
+
+
+
+// ==========================================
+// GET APPLICATION STATUS
+// ==========================================
+
+async function updateApplicationStatus() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/apps/status"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            return;
+
+        }
+
+
+        const applications =
+            data.applications;
+
+
+        Object.keys(applications)
+            .forEach(
+                function(appName) {
+
+                    const statusElement =
+                        document.getElementById(
+                            "status-" + appName
+                        );
+
+
+                    if (!statusElement) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        applications[appName]
+                    ) {
+
+                        statusElement.textContent =
+                            "🟢 Running";
+
+                        statusElement.className =
+                            "app-status running";
+
+                    }
+                    else {
+
+                        statusElement.textContent =
+                            "⚪ Not Running";
+
+                        statusElement.className =
+                            "app-status stopped";
+
+                    }
+
+                }
+            );
+
+    }
+    catch (error) {
+
+        console.error(
+            "Status error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+// ==========================================
+// CONNECT BUTTONS
 // ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
 
-        // ==================================
         // NOTEPAD
-        // ==================================
 
         const notepad =
             document.getElementById(
@@ -100,7 +272,7 @@ document.addEventListener(
 
             notepad.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     launchApplication(
                         "notepad"
@@ -112,9 +284,8 @@ document.addEventListener(
         }
 
 
-        // ==================================
+
         // CALCULATOR
-        // ==================================
 
         const calculator =
             document.getElementById(
@@ -126,7 +297,7 @@ document.addEventListener(
 
             calculator.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     launchApplication(
                         "calculator"
@@ -138,9 +309,8 @@ document.addEventListener(
         }
 
 
-        // ==================================
-        // FILE EXPLORER
-        // ==================================
+
+        // EXPLORER
 
         const explorer =
             document.getElementById(
@@ -152,7 +322,7 @@ document.addEventListener(
 
             explorer.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     launchApplication(
                         "explorer"
@@ -164,9 +334,8 @@ document.addEventListener(
         }
 
 
-        // ==================================
+
         // CHROME
-        // ==================================
 
         const chrome =
             document.getElementById(
@@ -178,7 +347,7 @@ document.addEventListener(
 
             chrome.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     launchApplication(
                         "chrome"
@@ -190,9 +359,8 @@ document.addEventListener(
         }
 
 
-        // ==================================
+
         // VS CODE
-        // ==================================
 
         const vscode =
             document.getElementById(
@@ -204,7 +372,7 @@ document.addEventListener(
 
             vscode.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     launchApplication(
                         "vscode"
@@ -216,8 +384,88 @@ document.addEventListener(
         }
 
 
+
+        // ==================================
+        // CLOSE BUTTONS
+        // ==================================
+
+
+        const closeButton =
+            document.getElementById(
+                "close-app"
+            );
+
+
+        const appSelector =
+            document.getElementById(
+                "close-app-selector"
+            );
+
+
+        if (closeButton && appSelector) {
+
+            closeButton.addEventListener(
+                "click",
+                function() {
+
+                    const appName =
+                        appSelector.value;
+
+
+                    if (!appName) {
+
+                        return;
+
+                    }
+
+
+                    closeApplication(
+                        appName
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // ==================================
+        // REFRESH STATUS
+        // ==================================
+
+        const refreshButton =
+            document.getElementById(
+                "refresh-apps"
+            );
+
+
+        if (refreshButton) {
+
+            refreshButton.addEventListener(
+                "click",
+                updateApplicationStatus
+            );
+
+        }
+
+
+
+        // Initial status
+
+        updateApplicationStatus();
+
+
+        // Automatic status refresh
+
+        setInterval(
+            updateApplicationStatus,
+            5000
+        );
+
+
         console.log(
-            "PCPilot Application Launcher Ready"
+            "PCPilot Application Manager Ready"
         );
 
     }

@@ -623,7 +623,178 @@
 
         </section>
 
+        <!-- ================================= -->
+<!-- APPLICATION MANAGER -->
+<!-- ================================= -->
 
+<section class="app-manager-section">
+
+    <div class="app-manager-title">
+
+        <h2>
+            🛑 Application Manager
+        </h2>
+
+        <p>
+            Check and close applications running on your PC
+        </p>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- RUNNING APPLICATIONS -->
+    <!-- ================================= -->
+
+    <div class="app-status-list">
+
+
+        <!-- NOTEPAD -->
+
+        <div class="app-status-item">
+
+            <span>
+                📝 Notepad
+            </span>
+
+            <span
+                id="status-notepad"
+                class="app-status stopped"
+            >
+                ⚪ Not Running
+            </span>
+
+        </div>
+
+
+        <!-- CALCULATOR -->
+
+        <div class="app-status-item">
+
+            <span>
+                🧮 Calculator
+            </span>
+
+            <span
+                id="status-calculator"
+                class="app-status stopped"
+            >
+                ⚪ Not Running
+            </span>
+
+        </div>
+
+
+        <!-- EXPLORER -->
+
+        <div class="app-status-item">
+
+            <span>
+                📁 File Explorer
+            </span>
+
+            <span
+                id="status-explorer"
+                class="app-status stopped"
+            >
+                ⚪ Not Running
+            </span>
+
+        </div>
+
+
+        <!-- CHROME -->
+
+        <div class="app-status-item">
+
+            <span>
+                🌐 Chrome
+            </span>
+
+            <span
+                id="status-chrome"
+                class="app-status stopped"
+            >
+                ⚪ Not Running
+            </span>
+
+        </div>
+
+
+        <!-- VS CODE -->
+
+        <div class="app-status-item">
+
+            <span>
+                💻 VS Code
+            </span>
+
+            <span
+                id="status-vscode"
+                class="app-status stopped"
+            >
+                ⚪ Not Running
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- CLOSE APPLICATION -->
+    <!-- ================================= -->
+
+    <div class="close-app-controls">
+
+        <select id="close-app-selector">
+
+            <option value="notepad">
+                📝 Notepad
+            </option>
+
+            <option value="calculator">
+                🧮 Calculator
+            </option>
+
+            <option value="explorer">
+                📁 File Explorer
+            </option>
+
+            <option value="chrome">
+                🌐 Chrome
+            </option>
+
+            <option value="vscode">
+                💻 VS Code
+            </option>
+
+        </select>
+
+
+        <button
+            id="close-app"
+            type="button"
+        >
+            🛑 Close App
+        </button>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- REFRESH -->
+    <!-- ================================= -->
+
+    <button
+        id="refresh-apps"
+        type="button"
+        class="refresh-apps"
+    >
+        🔄 Refresh App Status
+    </button>
+
+</section>
     </main>
 
 </div>
