@@ -1,36 +1,80 @@
+// ==========================================
+// PCPILOT CONNECTION
+// ==========================================
+
 async function checkConnection() {
 
-    const statusText = document.getElementById("status-text");
-    const statusIcon = document.getElementById("status-icon");
+    const statusText =
+        document.getElementById("status-text");
+
+    const statusIcon =
+        document.getElementById("status-icon");
+
     const connectionStatus =
         document.getElementById("connection-status");
 
+
     try {
 
-        const response = await fetch("/api/status");
+        const response =
+            await fetch("/api/status");
+
 
         if (!response.ok) {
+
             throw new Error("Server error");
+
         }
 
-        const data = await response.json();
+
+        const data =
+            await response.json();
+
 
         if (data.status === "connected") {
 
             statusIcon.textContent = "🟢";
-            statusText.textContent = "PCPilot is connected";
-            connectionStatus.textContent = "🟢 Connected";
+
+            statusText.textContent =
+                "PCPilot is connected";
+
+            connectionStatus.textContent =
+                "🟢 Connected";
 
         }
 
-    } catch (error) {
+    }
+    catch (error) {
 
         statusIcon.textContent = "🔴";
-        statusText.textContent = "Unable to connect";
-        connectionStatus.textContent = "🔴 Disconnected";
 
-        console.error(error);
+        statusText.textContent =
+            "Unable to connect";
+
+        connectionStatus.textContent =
+            "🔴 Disconnected";
+
+
+        console.error(
+            "Connection error:",
+            error
+        );
+
     }
+
 }
 
+
+// ==========================================
+// CHECK CONNECTION
+// ==========================================
+
 checkConnection();
+
+
+// Check connection again every 5 seconds
+
+setInterval(
+    checkConnection,
+    5000
+);
