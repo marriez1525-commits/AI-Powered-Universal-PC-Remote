@@ -13,9 +13,8 @@ class AppService:
         ],
 
         "vscode": [
-            r"C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-        ],
-
+            r"C:\Users\HP\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+       ],
         "notepad": [
             "notepad.exe"
         ],
