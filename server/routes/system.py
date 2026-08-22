@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from services.system_service import SystemService
 
@@ -9,6 +9,10 @@ system_bp = Blueprint(
     url_prefix="/api/system"
 )
 
+
+# ==========================================
+# LOCK
+# ==========================================
 
 @system_bp.route("/lock", methods=["POST"])
 def lock_pc():
@@ -30,6 +34,10 @@ def lock_pc():
         }), 500
 
 
+# ==========================================
+# SLEEP
+# ==========================================
+
 @system_bp.route("/sleep", methods=["POST"])
 def sleep_pc():
 
@@ -49,6 +57,10 @@ def sleep_pc():
             "error": str(error)
         }), 500
 
+
+# ==========================================
+# RESTART
+# ==========================================
 
 @system_bp.route("/restart", methods=["POST"])
 def restart_pc():
@@ -70,6 +82,10 @@ def restart_pc():
         }), 500
 
 
+# ==========================================
+# SHUTDOWN
+# ==========================================
+
 @system_bp.route("/shutdown", methods=["POST"])
 def shutdown_pc():
 
@@ -89,6 +105,10 @@ def shutdown_pc():
             "error": str(error)
         }), 500
 
+
+# ==========================================
+# SHOW DESKTOP
+# ==========================================
 
 @system_bp.route("/show-desktop", methods=["POST"])
 def show_desktop():
@@ -110,6 +130,10 @@ def show_desktop():
         }), 500
 
 
+# ==========================================
+# MINIMIZE WINDOWS
+# ==========================================
+
 @system_bp.route("/minimize", methods=["POST"])
 def minimize_windows():
 
@@ -121,6 +145,51 @@ def minimize_windows():
             "success": True,
             "action": "minimize"
         })
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "error": str(error)
+        }), 500
+
+
+# ==========================================
+# BRIGHTNESS
+# ==========================================
+
+@system_bp.route("/brightness", methods=["POST"])
+def set_brightness():
+
+    try:
+
+        data = request.get_json()
+
+        if not data or "value" not in data:
+            return jsonify({
+                "success": False,
+                "error": "Brightness value is required"
+            }), 400
+
+        value = int(data["value"])
+
+        # Keep brightness between 0 and 100
+        value = max(0, min(100, value))
+
+        SystemService.set_brightness(value)
+
+        return jsonify({
+            "success": True,
+            "action": "brightness",
+            "value": value
+        })
+
+    except ValueError:
+
+        return jsonify({
+            "success": False,
+            "error": "Brightness must be a number"
+        }), 400
 
     except Exception as error:
 
