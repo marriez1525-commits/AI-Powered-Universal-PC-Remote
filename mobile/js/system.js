@@ -234,7 +234,38 @@ if (brightnessUp) {
     );
 
 }
+// ==========================================
+// BRIGHTNESS UP
+// ==========================================
 
+const brightnessUpButton =
+    document.getElementById("brightness-up");
+
+if (brightnessUpButton) {
+    brightnessUpButton.addEventListener(
+        "click",
+        function () {
+            sendSystemCommand("brightness-up");
+        }
+    );
+}
+
+
+// ==========================================
+// BRIGHTNESS DOWN
+// ==========================================
+
+const brightnessDownButton =
+    document.getElementById("brightness-down");
+
+if (brightnessDownButton) {
+    brightnessDownButton.addEventListener(
+        "click",
+        function () {
+            sendSystemCommand("brightness-down");
+        }
+    );
+}
 
 // ==========================================
 // LOCK

@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify
-
 from services.system_service import SystemService
 
 
@@ -16,9 +15,7 @@ system_bp = Blueprint(
 
 @system_bp.route("/lock", methods=["POST"])
 def lock_pc():
-
     try:
-
         SystemService.lock_pc()
 
         return jsonify({
@@ -27,7 +24,6 @@ def lock_pc():
         })
 
     except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -40,9 +36,7 @@ def lock_pc():
 
 @system_bp.route("/sleep", methods=["POST"])
 def sleep_pc():
-
     try:
-
         SystemService.sleep_pc()
 
         return jsonify({
@@ -51,7 +45,6 @@ def sleep_pc():
         })
 
     except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -64,9 +57,7 @@ def sleep_pc():
 
 @system_bp.route("/restart", methods=["POST"])
 def restart_pc():
-
     try:
-
         SystemService.restart_pc()
 
         return jsonify({
@@ -75,7 +66,6 @@ def restart_pc():
         })
 
     except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -88,9 +78,7 @@ def restart_pc():
 
 @system_bp.route("/shutdown", methods=["POST"])
 def shutdown_pc():
-
     try:
-
         SystemService.shutdown_pc()
 
         return jsonify({
@@ -99,7 +87,6 @@ def shutdown_pc():
         })
 
     except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -112,9 +99,7 @@ def shutdown_pc():
 
 @system_bp.route("/show-desktop", methods=["POST"])
 def show_desktop():
-
     try:
-
         SystemService.show_desktop()
 
         return jsonify({
@@ -123,7 +108,6 @@ def show_desktop():
         })
 
     except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -136,9 +120,7 @@ def show_desktop():
 
 @system_bp.route("/minimize", methods=["POST"])
 def minimize_windows():
-
     try:
-
         SystemService.minimize_windows()
 
         return jsonify({
@@ -147,58 +129,6 @@ def minimize_windows():
         })
 
     except Exception as error:
-
-        return jsonify({
-            "success": False,
-            "error": str(error)
-        }), 500
-
-@system_bp.route("/brightness-up", methods=["POST"])
-def brightness_up():
-    try:
-        SystemService.brightness_up()
-        return jsonify({
-            "success": True,
-            "action": "brightness-up"
-        })
-    except Exception as error:
-        return jsonify({
-            "success": False,
-            "error": str(error)
-        }), 500
-
-
-@system_bp.route("/brightness-down", methods=["POST"])
-def brightness_down():
-    try:
-        SystemService.brightness_down()
-        return jsonify({
-            "success": True,
-            "action": "brightness-down"
-        })
-    except Exception as error:
-        return jsonify({
-            "success": False,
-            "error": str(error)
-        }), 500
-# ==========================================
-# BRIGHTNESS DOWN
-# ==========================================
-
-@system_bp.route("/brightness-down", methods=["POST"])
-def brightness_down():
-
-    try:
-
-        SystemService.brightness_down()
-
-        return jsonify({
-            "success": True,
-            "action": "brightness-down"
-        })
-
-    except Exception as error:
-
         return jsonify({
             "success": False,
             "error": str(error)
@@ -211,9 +141,7 @@ def brightness_down():
 
 @system_bp.route("/brightness-up", methods=["POST"])
 def brightness_up():
-
     try:
-
         SystemService.brightness_up()
 
         return jsonify({
@@ -222,7 +150,27 @@ def brightness_up():
         })
 
     except Exception as error:
+        return jsonify({
+            "success": False,
+            "error": str(error)
+        }), 500
 
+
+# ==========================================
+# BRIGHTNESS DOWN
+# ==========================================
+
+@system_bp.route("/brightness-down", methods=["POST"])
+def brightness_down():
+    try:
+        SystemService.brightness_down()
+
+        return jsonify({
+            "success": True,
+            "action": "brightness-down"
+        })
+
+    except Exception as error:
         return jsonify({
             "success": False,
             "error": str(error)
