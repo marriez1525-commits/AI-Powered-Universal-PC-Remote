@@ -140,3 +140,14 @@ class SystemService:
             capture_output=True,
             text=True
         )
+
+    @staticmethod
+    def brightness_up():
+        import pyautogui
+        pyautogui.press("brightnessup")
+
+
+    @staticmethod
+    def brightness_down():
+        import pyautogui
+        pyautogui.press("brightnessdown")
