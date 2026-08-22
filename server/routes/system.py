@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 
 from services.system_service import SystemService
 
@@ -131,7 +131,7 @@ def show_desktop():
 
 
 # ==========================================
-# MINIMIZE WINDOWS
+# MINIMIZE
 # ==========================================
 
 @system_bp.route("/minimize", methods=["POST"])
@@ -155,41 +155,44 @@ def minimize_windows():
 
 
 # ==========================================
-# BRIGHTNESS
+# BRIGHTNESS DOWN
 # ==========================================
 
-@system_bp.route("/brightness", methods=["POST"])
-def set_brightness():
+@system_bp.route("/brightness-down", methods=["POST"])
+def brightness_down():
 
     try:
 
-        data = request.get_json()
-
-        if not data or "value" not in data:
-            return jsonify({
-                "success": False,
-                "error": "Brightness value is required"
-            }), 400
-
-        value = int(data["value"])
-
-        # Keep brightness between 0 and 100
-        value = max(0, min(100, value))
-
-        SystemService.set_brightness(value)
+        SystemService.brightness_down()
 
         return jsonify({
             "success": True,
-            "action": "brightness",
-            "value": value
+            "action": "brightness-down"
         })
 
-    except ValueError:
+    except Exception as error:
 
         return jsonify({
             "success": False,
-            "error": "Brightness must be a number"
-        }), 400
+            "error": str(error)
+        }), 500
+
+
+# ==========================================
+# BRIGHTNESS UP
+# ==========================================
+
+@system_bp.route("/brightness-up", methods=["POST"])
+def brightness_up():
+
+    try:
+
+        SystemService.brightness_up()
+
+        return jsonify({
+            "success": True,
+            "action": "brightness-up"
+        })
 
     except Exception as error:
 
