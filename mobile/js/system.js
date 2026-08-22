@@ -34,6 +34,204 @@ async function sendSystemCommand(command) {
         );
 
     }
+}
+
+
+// ==========================================
+// SET BRIGHTNESS
+// ==========================================
+
+async function setBrightness(value) {
+
+    value = Number(value);
+
+    // Keep brightness between 0 and 100
+    value = Math.max(
+        0,
+        Math.min(100, value)
+    );
+
+    try {
+
+        const response = await fetch(
+            "/api/system/brightness",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    value: value
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log(
+            "Brightness:",
+            data
+        );
+
+        if (!data.success) {
+
+            console.error(
+                "Brightness error:",
+                data.error
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Brightness command error:",
+            error
+        );
+
+    }
+}
+
+
+// ==========================================
+// BRIGHTNESS SLIDER
+// ==========================================
+
+const brightnessSlider =
+    document.getElementById(
+        "brightness-slider"
+    );
+
+const brightnessValue =
+    document.getElementById(
+        "brightness-value"
+    );
+
+
+if (brightnessSlider) {
+
+    brightnessSlider.addEventListener(
+        "input",
+        function () {
+
+            const value =
+                Number(this.value);
+
+            if (brightnessValue) {
+
+                brightnessValue.textContent =
+                    `${value}%`;
+
+            }
+
+        }
+    );
+
+
+    brightnessSlider.addEventListener(
+        "change",
+        function () {
+
+            setBrightness(
+                this.value
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// BRIGHTNESS DOWN
+// ==========================================
+
+const brightnessDown =
+    document.getElementById(
+        "brightness-down"
+    );
+
+
+if (brightnessDown) {
+
+    brightnessDown.addEventListener(
+        "click",
+        function () {
+
+            if (!brightnessSlider) {
+                return;
+            }
+
+            let value =
+                Number(brightnessSlider.value);
+
+            value -= 10;
+
+            value =
+                Math.max(0, value);
+
+            brightnessSlider.value =
+                value;
+
+            if (brightnessValue) {
+
+                brightnessValue.textContent =
+                    `${value}%`;
+
+            }
+
+            setBrightness(value);
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// BRIGHTNESS UP
+// ==========================================
+
+const brightnessUp =
+    document.getElementById(
+        "brightness-up"
+    );
+
+
+if (brightnessUp) {
+
+    brightnessUp.addEventListener(
+        "click",
+        function () {
+
+            if (!brightnessSlider) {
+                return;
+            }
+
+            let value =
+                Number(brightnessSlider.value);
+
+            value += 10;
+
+            value =
+                Math.min(100, value);
+
+            brightnessSlider.value =
+                value;
+
+            if (brightnessValue) {
+
+                brightnessValue.textContent =
+                    `${value}%`;
+
+            }
+
+            setBrightness(value);
+
+        }
+    );
 
 }
 
@@ -43,7 +241,10 @@ async function sendSystemCommand(command) {
 // ==========================================
 
 const lockButton =
-    document.getElementById("system-lock");
+    document.getElementById(
+        "system-lock"
+    );
+
 
 if (lockButton) {
 
@@ -51,7 +252,9 @@ if (lockButton) {
         "click",
         function() {
 
-            sendSystemCommand("lock");
+            sendSystemCommand(
+                "lock"
+            );
 
         }
     );
@@ -64,7 +267,10 @@ if (lockButton) {
 // ==========================================
 
 const sleepButton =
-    document.getElementById("system-sleep");
+    document.getElementById(
+        "system-sleep"
+    );
+
 
 if (sleepButton) {
 
@@ -79,7 +285,9 @@ if (sleepButton) {
 
             if (confirmed) {
 
-                sendSystemCommand("sleep");
+                sendSystemCommand(
+                    "sleep"
+                );
 
             }
 
@@ -94,7 +302,10 @@ if (sleepButton) {
 // ==========================================
 
 const restartButton =
-    document.getElementById("system-restart");
+    document.getElementById(
+        "system-restart"
+    );
+
 
 if (restartButton) {
 
@@ -109,7 +320,9 @@ if (restartButton) {
 
             if (confirmed) {
 
-                sendSystemCommand("restart");
+                sendSystemCommand(
+                    "restart"
+                );
 
             }
 
@@ -124,7 +337,10 @@ if (restartButton) {
 // ==========================================
 
 const shutdownButton =
-    document.getElementById("system-shutdown");
+    document.getElementById(
+        "system-shutdown"
+    );
+
 
 if (shutdownButton) {
 
@@ -139,7 +355,9 @@ if (shutdownButton) {
 
             if (confirmed) {
 
-                sendSystemCommand("shutdown");
+                sendSystemCommand(
+                    "shutdown"
+                );
 
             }
 
@@ -154,7 +372,10 @@ if (shutdownButton) {
 // ==========================================
 
 const showDesktopButton =
-    document.getElementById("system-show-desktop");
+    document.getElementById(
+        "system-show-desktop"
+    );
+
 
 if (showDesktopButton) {
 
@@ -162,7 +383,9 @@ if (showDesktopButton) {
         "click",
         function() {
 
-            sendSystemCommand("show-desktop");
+            sendSystemCommand(
+                "show-desktop"
+            );
 
         }
     );
@@ -175,7 +398,10 @@ if (showDesktopButton) {
 // ==========================================
 
 const minimizeButton =
-    document.getElementById("system-minimize");
+    document.getElementById(
+        "system-minimize"
+    );
+
 
 if (minimizeButton) {
 
@@ -183,7 +409,9 @@ if (minimizeButton) {
         "click",
         function() {
 
-            sendSystemCommand("minimize");
+            sendSystemCommand(
+                "minimize"
+            );
 
         }
     );
