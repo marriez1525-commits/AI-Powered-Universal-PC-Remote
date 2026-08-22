@@ -5,7 +5,7 @@ import subprocess
 class SystemService:
 
     # ==========================================
-    # LOCK PC
+    # LOCK
     # ==========================================
 
     @staticmethod
@@ -17,7 +17,7 @@ class SystemService:
 
 
     # ==========================================
-    # SLEEP PC
+    # SLEEP
     # ==========================================
 
     @staticmethod
@@ -37,7 +37,7 @@ class SystemService:
 
 
     # ==========================================
-    # RESTART PC
+    # RESTART
     # ==========================================
 
     @staticmethod
@@ -49,7 +49,7 @@ class SystemService:
 
 
     # ==========================================
-    # SHUTDOWN PC
+    # SHUTDOWN
     # ==========================================
 
     @staticmethod
@@ -67,9 +67,9 @@ class SystemService:
     @staticmethod
     def show_desktop():
 
-        # Win + D
         import pyautogui
 
+        # Win + D
         pyautogui.hotkey(
             "win",
             "d"
@@ -83,9 +83,9 @@ class SystemService:
     @staticmethod
     def minimize_windows():
 
-        # Win + M
         import pyautogui
 
+        # Win + M
         pyautogui.hotkey(
             "win",
             "m"
@@ -93,33 +93,47 @@ class SystemService:
 
 
     # ==========================================
-    # SET BRIGHTNESS
+    # BRIGHTNESS DOWN
     # ==========================================
 
     @staticmethod
-    def set_brightness(value):
+    def brightness_down():
 
-        # Make sure brightness stays between 0 and 100
-        value = max(0, min(100, int(value)))
+        powershell_command = """
+        $brightness = (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness).CurrentBrightness
+        $newBrightness = [Math]::Max(0, $brightness - 10)
 
-        powershell_command = f"""
-        $brightness = {value}
-
-        $monitors = Get-WmiObject `
-            -Namespace root/WMI `
-            -Class WmiMonitorBrightnessMethods
-
-        foreach ($monitor in $monitors) {{
-            $monitor.WmiSetBrightness(1, $brightness)
-        }}
+        (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1, $newBrightness)
         """
 
         subprocess.run(
             [
                 "powershell",
-                "-NoProfile",
-                "-ExecutionPolicy",
-                "Bypass",
+                "-Command",
+                powershell_command
+            ],
+            capture_output=True,
+            text=True
+        )
+
+
+    # ==========================================
+    # BRIGHTNESS UP
+    # ==========================================
+
+    @staticmethod
+    def brightness_up():
+
+        powershell_command = """
+        $brightness = (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness).CurrentBrightness
+        $newBrightness = [Math]::Min(100, $brightness + 10)
+
+        (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1, $newBrightness)
+        """
+
+        subprocess.run(
+            [
+                "powershell",
                 "-Command",
                 powershell_command
             ],
