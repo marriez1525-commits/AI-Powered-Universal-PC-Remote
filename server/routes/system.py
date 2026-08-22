@@ -153,7 +153,34 @@ def minimize_windows():
             "error": str(error)
         }), 500
 
+@system_bp.route("/brightness-up", methods=["POST"])
+def brightness_up():
+    try:
+        SystemService.brightness_up()
+        return jsonify({
+            "success": True,
+            "action": "brightness-up"
+        })
+    except Exception as error:
+        return jsonify({
+            "success": False,
+            "error": str(error)
+        }), 500
 
+
+@system_bp.route("/brightness-down", methods=["POST"])
+def brightness_down():
+    try:
+        SystemService.brightness_down()
+        return jsonify({
+            "success": True,
+            "action": "brightness-down"
+        })
+    except Exception as error:
+        return jsonify({
+            "success": False,
+            "error": str(error)
+        }), 500
 # ==========================================
 # BRIGHTNESS DOWN
 # ==========================================
