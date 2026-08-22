@@ -1,5 +1,8 @@
 import os
 import subprocess
+import pyautogui
+import wmi
+import pythoncom
 
 
 class SystemService:
@@ -10,10 +13,7 @@ class SystemService:
 
     @staticmethod
     def lock_pc():
-
-        os.system(
-            "rundll32.exe user32.dll,LockWorkStation"
-        )
+        os.system("rundll32.exe user32.dll,LockWorkStation")
 
 
     # ==========================================
@@ -22,7 +22,6 @@ class SystemService:
 
     @staticmethod
     def sleep_pc():
-
         subprocess.run(
             [
                 "powershell",
@@ -42,10 +41,7 @@ class SystemService:
 
     @staticmethod
     def restart_pc():
-
-        os.system(
-            "shutdown /r /t 5"
-        )
+        os.system("shutdown /r /t 5")
 
 
     # ==========================================
@@ -54,10 +50,7 @@ class SystemService:
 
     @staticmethod
     def shutdown_pc():
-
-        os.system(
-            "shutdown /s /t 5"
-        )
+        os.system("shutdown /s /t 5")
 
 
     # ==========================================
@@ -66,14 +59,7 @@ class SystemService:
 
     @staticmethod
     def show_desktop():
-
-        import pyautogui
-
-        # Win + D
-        pyautogui.hotkey(
-            "win",
-            "d"
-        )
+        pyautogui.hotkey("win", "d")
 
 
     # ==========================================
@@ -82,39 +68,78 @@ class SystemService:
 
     @staticmethod
     def minimize_windows():
-
-        import pyautogui
-
-        # Win + M
-        pyautogui.hotkey(
-            "win",
-            "m"
-        )
+        pyautogui.hotkey("win", "m")
 
 
     # ==========================================
-    # BRIGHTNESS DOWN
+    # GET CURRENT BRIGHTNESS
     # ==========================================
 
     @staticmethod
-    def brightness_down():
+    def get_brightness():
 
-        powershell_command = """
-        $brightness = (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness).CurrentBrightness
-        $newBrightness = [Math]::Max(0, $brightness - 10)
+        pythoncom.CoInitialize()
 
-        (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1, $newBrightness)
-        """
+        try:
+            monitors = wmi.WMI(namespace="wmi")
 
-        subprocess.run(
-            [
-                "powershell",
-                "-Command",
-                powershell_command
-            ],
-            capture_output=True,
-            text=True
-        )
+            brightness = monitors.WmiMonitorBrightness()
+
+            if brightness:
+                current = brightness[0].CurrentBrightness
+
+                print(f"Current brightness: {current}%")
+
+                return current
+
+            return None
+
+        except Exception as error:
+            print("Brightness read error:", error)
+            raise
+
+        finally:
+            pythoncom.CoUninitialize()
+
+
+    # ==========================================
+    # SET BRIGHTNESS
+    # ==========================================
+
+    @staticmethod
+    def set_brightness(value):
+
+        value = max(0, min(100, int(value)))
+
+        pythoncom.CoInitialize()
+
+        try:
+            monitors = wmi.WMI(namespace="wmi")
+
+            methods = monitors.WmiMonitorBrightnessMethods()
+
+            if not methods:
+                raise Exception(
+                    "Windows did not detect a controllable monitor."
+                )
+
+            for monitor in methods:
+
+                monitor.WmiSetBrightness(
+                    Timeout=1,
+                    Brightness=value
+                )
+
+            print(f"Brightness set to {value}%")
+
+            return value
+
+        except Exception as error:
+            print("Brightness set error:", error)
+            raise
+
+        finally:
+            pythoncom.CoUninitialize()
 
 
     # ==========================================
@@ -124,30 +149,32 @@ class SystemService:
     @staticmethod
     def brightness_up():
 
-        powershell_command = """
-        $brightness = (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness).CurrentBrightness
-        $newBrightness = [Math]::Min(100, $brightness + 10)
+        current = SystemService.get_brightness()
 
-        (Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1, $newBrightness)
-        """
+        if current is None:
+            raise Exception(
+                "Unable to read current monitor brightness."
+            )
 
-        subprocess.run(
-            [
-                "powershell",
-                "-Command",
-                powershell_command
-            ],
-            capture_output=True,
-            text=True
-        )
+        new_value = min(100, current + 10)
 
-    @staticmethod
-    def brightness_up():
-        import pyautogui
-        pyautogui.press("brightnessup")
+        return SystemService.set_brightness(new_value)
 
+
+    # ==========================================
+    # BRIGHTNESS DOWN
+    # ==========================================
 
     @staticmethod
     def brightness_down():
-        import pyautogui
-        pyautogui.press("brightnessdown")
+
+        current = SystemService.get_brightness()
+
+        if current is None:
+            raise Exception(
+                "Unable to read current monitor brightness."
+            )
+
+        new_value = max(0, current - 10)
+
+        return SystemService.set_brightness(new_value)
