@@ -3,38 +3,23 @@
 ========================================= */
 
 .system-section {
-
     margin-top: 25px;
-
     padding: 0 15px;
-
 }
-
 
 .system-title {
-
     margin-bottom: 15px;
-
 }
-
 
 .system-title h2 {
-
     margin: 0 0 6px 0;
-
     font-size: 25px;
-
 }
 
-
 .system-title p {
-
     margin: 0;
-
     color: #666;
-
     font-size: 14px;
-
 }
 
 
@@ -43,40 +28,25 @@
 ========================================= */
 
 .system-controls {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-
 }
-
 
 .system-controls button {
-
     min-height: 60px;
-
     border: none;
-
     border-radius: 14px;
-
     background: #374151;
-
     color: white;
-
     font-size: 15px;
-
     font-weight: bold;
-
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
 
-
 .system-controls button:active {
-
     transform: scale(0.96);
-
 }
 
 
@@ -85,9 +55,7 @@
 ========================================= */
 
 .system-lock {
-
     background: #2563eb !important;
-
 }
 
 
@@ -96,9 +64,7 @@
 ========================================= */
 
 .system-sleep {
-
     background: #4b5563 !important;
-
 }
 
 
@@ -107,9 +73,7 @@
 ========================================= */
 
 .system-desktop {
-
     background: #059669 !important;
-
 }
 
 
@@ -118,9 +82,7 @@
 ========================================= */
 
 .system-restart {
-
     background: #d97706 !important;
-
 }
 
 
@@ -129,7 +91,160 @@
 ========================================= */
 
 .system-shutdown {
-
     background: #dc2626 !important;
+}
+
+
+/* =========================================
+   BRIGHTNESS
+========================================= */
+
+.brightness-section {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   BRIGHTNESS TITLE
+========================================= */
+
+.brightness-title {
+    margin-bottom: 15px;
+}
+
+.brightness-title h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+
+.brightness-title p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BRIGHTNESS DISPLAY
+========================================= */
+
+.brightness-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#brightness-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+}
+
+
+/* =========================================
+   BRIGHTNESS SLIDER ROW
+========================================= */
+
+.brightness-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================
+   BRIGHTNESS ICONS
+========================================= */
+
+.brightness-icon {
+    font-size: 22px;
+    min-width: 25px;
+    text-align: center;
+}
+
+
+/* =========================================
+   SLIDER
+========================================= */
+
+#brightness-slider {
+    flex: 1;
+    height: 8px;
+    cursor: pointer;
+    accent-color: #f59e0b;
+}
+
+
+/* =========================================
+   BRIGHTNESS BUTTONS
+========================================= */
+
+.brightness-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.brightness-buttons button {
+    min-height: 55px;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.brightness-buttons button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================
+   BRIGHTNESS DOWN
+========================================= */
+
+#brightness-down {
+    background: #4b5563;
+}
+
+
+/* =========================================
+   BRIGHTNESS UP
+========================================= */
+
+#brightness-up {
+    background: #f59e0b;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .system-section {
+        padding: 0 10px;
+    }
+
+    .system-controls {
+        gap: 8px;
+    }
+
+    .system-controls button {
+        min-height: 58px;
+        font-size: 14px;
+    }
+
+    .brightness-section {
+        padding: 15px;
+    }
 
 }
