@@ -1,734 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================
+   SYSTEM CONTROL
+========================================= */
 
-<head>
+.system-section {
+    margin-top: 25px;
+    padding: 0 15px;
+}
 
-    <meta charset="UTF-8">
+.system-title {
+    margin-bottom: 15px;
+}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+.system-title h2 {
+    margin: 0 0 6px 0;
+    font-size: 25px;
+}
 
-    <title>PCPilot</title>
+.system-title p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
 
 
-    <!-- ================================= -->
-    <!-- CSS FILES -->
-    <!-- ================================= -->
+/* =========================================
+   SYSTEM BUTTONS
+========================================= */
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/style/style.css">
+.system-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
 
-    <!-- Touchpad CSS -->
-    <link rel="stylesheet" href="/style/touchpad.css">
+.system-controls button {
+    min-height: 60px;
+    border: none;
+    border-radius: 14px;
+    background: #374151;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
 
-    <!-- Keyboard CSS -->
-    <link rel="stylesheet" href="/style/keyboard.css">
+.system-controls button:active {
+    transform: scale(0.96);
+    opacity: 0.85;
+}
+
 
-    <!-- Media CSS -->
-    <link rel="stylesheet" href="/style/media.css">
+/* =========================================
+   LOCK
+========================================= */
+
+.system-lock {
+    background: #2563eb !important;
+}
 
-    <!-- System CSS -->
-    <link rel="stylesheet" href="/style/system.css">
+
+/* =========================================
+   SLEEP
+========================================= */
+
+.system-sleep {
+    background: #4b5563 !important;
+}
 
-    <!-- Applications CSS -->
-    <link rel="stylesheet" href="/style/apps.css">
 
-</head>
+/* =========================================
+   SHOW DESKTOP
+========================================= */
 
+.system-desktop {
+    background: #059669 !important;
+}
 
-<body>
 
-<div class="app">
+/* =========================================
+   MINIMIZE
+========================================= */
 
+.system-minimize {
+    background: #64748b !important;
+}
 
-    <!-- ================================= -->
-    <!-- HEADER -->
-    <!-- ================================= -->
 
-    <header>
+/* =========================================
+   RESTART
+========================================= */
 
-        <h1>PCPilot</h1>
+.system-restart {
+    background: #d97706 !important;
+}
 
-        <p>Universal PC Remote</p>
 
-        <div id="connection-status">
-            🔴 Connecting...
-        </div>
-
-    </header>
-
-
-    <!-- ================================= -->
-    <!-- MAIN -->
-    <!-- ================================= -->
-
-    <main>
-
-
-        <!-- ================================= -->
-        <!-- CONNECTION CARD -->
-        <!-- ================================= -->
-
-        <section class="welcome-card">
-
-            <h2>Welcome to PCPilot</h2>
-
-            <p>
-                Control your computer directly
-                from your phone.
-            </p>
-
-            <div class="status">
-
-                <span id="status-icon">
-                    🔴
-                </span>
-
-                <span id="status-text">
-                    Connecting to PC...
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- TOUCHPAD -->
-        <!-- ================================= -->
-
-        <section class="touchpad-section">
-
-            <div class="section-title">
-
-                <h2>
-                    🖱️ Touchpad
-                </h2>
-
-                <span>
-                    Move your finger to control the cursor
-                </span>
-
-            </div>
-
-
-            <div
-                id="touchpad"
-                class="touchpad"
-            >
-
-                <div class="touchpad-message">
-                    Move your finger here
-                </div>
-
-            </div>
-
-
-            <div class="mouse-buttons">
-
-                <button
-                    id="left-click"
-                    type="button"
-                >
-                    🖱️ Left Click
-                </button>
-
-
-                <button
-                    id="right-click"
-                    type="button"
-                >
-                    🖱️ Right Click
-                </button>
-
-            </div>
-
-
-            <div class="extra-controls">
-
-                <button
-                    id="double-click"
-                    type="button"
-                >
-                    🖱️ Double Click
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- KEYBOARD -->
-        <!-- ================================= -->
-
-        <section class="keyboard-section">
-
-            <div class="keyboard-title">
-
-                <h2>
-                    ⌨️ Keyboard
-                </h2>
-
-                <p>
-                    Type and control your PC keyboard
-                </p>
-
-            </div>
-
-
-            <textarea
-                id="keyboard-input"
-                class="keyboard-input"
-                placeholder="Type something for your PC..."
-            ></textarea>
-
-
-            <button
-                id="keyboard-send"
-                class="keyboard-send"
-                type="button"
-            >
-                Send to PC
-            </button>
-
-
-            <div class="keyboard-special">
-
-                <button id="key-esc" type="button">
-                    ESC
-                </button>
-
-                <button id="key-tab" type="button">
-                    TAB
-                </button>
-
-                <button id="key-enter" type="button">
-                    ENTER
-                </button>
-
-                <button id="key-backspace" type="button">
-                    BACKSPACE
-                </button>
-
-                <button id="key-delete" type="button">
-                    DELETE
-                </button>
-
-                <button id="hotkey-copy" type="button">
-                    CTRL + C
-                </button>
-
-                <button id="hotkey-paste" type="button">
-                    CTRL + V
-                </button>
-
-                <button id="hotkey-select-all" type="button">
-                    CTRL + A
-                </button>
-
-            </div>
-
-
-            <div class="arrow-keys">
-
-                <div class="arrow-empty"></div>
-
-                <button id="key-up" type="button">
-                    ↑
-                </button>
-
-                <div class="arrow-empty"></div>
-
-                <button id="key-left" type="button">
-                    ←
-                </button>
-
-                <button id="key-down" type="button">
-                    ↓
-                </button>
-
-                <button id="key-right" type="button">
-                    →
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- MEDIA REMOTE -->
-        <!-- ================================= -->
-
-        <section class="media-section">
-
-            <div class="media-title">
-
-                <h2>
-                    🎵 Media Remote
-                </h2>
-
-                <p>
-                    Control music and volume on your PC
-                </p>
-
-            </div>
-
-
-            <div class="media-controls">
-
-                <button
-                    id="media-previous"
-                    type="button"
-                >
-                    ⏮️ Previous
-                </button>
-
-
-                <button
-                    id="media-play-pause"
-                    class="media-play"
-                    type="button"
-                >
-                    ▶️ Play / Pause
-                </button>
-
-
-                <button
-                    id="media-next"
-                    type="button"
-                >
-                    ⏭️ Next
-                </button>
-
-            </div>
-
-
-            <div class="volume-controls">
-
-                <button
-                    id="volume-down"
-                    type="button"
-                >
-                    🔉 Volume -
-                </button>
-
-
-                <button
-                    id="volume-mute"
-                    class="volume-mute"
-                    type="button"
-                >
-                    🔇 Mute
-                </button>
-
-
-                <button
-                    id="volume-up"
-                    type="button"
-                >
-                    🔊 Volume +
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- SYSTEM CONTROL -->
-        <!-- ================================= -->
-
-        <section class="system-section">
-
-            <div class="system-title">
-
-                <h2>
-                    🖥️ PC Control
-                </h2>
-
-                <p>
-                    Control your computer system
-                </p>
-
-            </div>
-
-
-            <div class="system-controls">
-
-                <button
-                    id="system-lock"
-                    class="system-lock"
-                    type="button"
-                >
-                    🔒 Lock PC
-                </button>
-
-
-                <button
-                    id="system-sleep"
-                    class="system-sleep"
-                    type="button"
-                >
-                    🌙 Sleep
-                </button>
-
-
-                <button
-                    id="system-show-desktop"
-                    class="system-desktop"
-                    type="button"
-                >
-                    🖥️ Show Desktop
-                </button>
-
-
-                <button
-                    id="system-minimize"
-                    type="button"
-                >
-                    📉 Minimize All
-                </button>
-
-
-                <button
-                    id="system-restart"
-                    class="system-restart"
-                    type="button"
-                >
-                    🔄 Restart PC
-                </button>
-
-
-                <button
-                    id="system-shutdown"
-                    class="system-shutdown"
-                    type="button"
-                >
-                    ⏻ Shutdown PC
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- APPLICATION LAUNCHER -->
-        <!-- ================================= -->
-
-        <section class="apps-section">
-
-            <div class="apps-title">
-
-                <h2>
-                    🚀 Applications
-                </h2>
-
-                <p>
-                    Launch applications on your PC
-                </p>
-
-            </div>
-
-
-            <div class="apps-grid">
-
-
-                <!-- CHROME -->
-
-                <button
-                    id="app-chrome"
-                    class="app-button app-chrome"
-                    type="button"
-                >
-
-                    <span class="app-icon">
-                        🌐
-                    </span>
-
-                    <span>
-                        Chrome
-                    </span>
-
-                </button>
-
-
-                <!-- VS CODE -->
-
-                <button
-                    id="app-vscode"
-                    class="app-button app-vscode"
-                    type="button"
-                >
-
-                    <span class="app-icon">
-                        💻
-                    </span>
-
-                    <span>
-                        VS Code
-                    </span>
-
-                </button>
-
-
-                <!-- NOTEPAD -->
-
-                <button
-                    id="app-notepad"
-                    class="app-button app-notepad"
-                    type="button"
-                >
-
-                    <span class="app-icon">
-                        📝
-                    </span>
-
-                    <span>
-                        Notepad
-                    </span>
-
-                </button>
-
-
-                <!-- CALCULATOR -->
-
-                <button
-                    id="app-calculator"
-                    class="app-button app-calculator"
-                    type="button"
-                >
-
-                    <span class="app-icon">
-                        🧮
-                    </span>
-
-                    <span>
-                        Calculator
-                    </span>
-
-                </button>
-
-
-                <!-- FILE EXPLORER -->
-
-                <button
-                    id="app-explorer"
-                    class="app-button app-explorer"
-                    type="button"
-                >
-
-                    <span class="app-icon">
-                        📁
-                    </span>
-
-                    <span>
-                        File Explorer
-                    </span>
-
-                </button>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- APPLICATION MANAGER -->
-        <!-- ================================= -->
-
-        <section class="app-manager-section">
-
-            <div class="app-manager-title">
-
-                <h2>
-                    🛑 Application Manager
-                </h2>
-
-                <p>
-                    Check and close applications running on your PC
-                </p>
-
-            </div>
-
-
-            <!-- RUNNING APPLICATIONS -->
-
-            <div class="app-status-list">
-
-
-                <!-- NOTEPAD -->
-
-                <div class="app-status-item">
-
-                    <span>
-                        📝 Notepad
-                    </span>
-
-                    <span
-                        id="status-notepad"
-                        class="app-status stopped"
-                    >
-                        ⚪ Not Running
-                    </span>
-
-                </div>
-
-
-                <!-- CALCULATOR -->
-
-                <div class="app-status-item">
-
-                    <span>
-                        🧮 Calculator
-                    </span>
-
-                    <span
-                        id="status-calculator"
-                        class="app-status stopped"
-                    >
-                        ⚪ Not Running
-                    </span>
-
-                </div>
-
-
-                <!-- FILE EXPLORER -->
-
-                <div class="app-status-item">
-
-                    <span>
-                        📁 File Explorer
-                    </span>
-
-                    <span
-                        id="status-explorer"
-                        class="app-status stopped"
-                    >
-                        ⚪ Not Running
-                    </span>
-
-                </div>
-
-
-                <!-- CHROME -->
-
-                <div class="app-status-item">
-
-                    <span>
-                        🌐 Chrome
-                    </span>
-
-                    <span
-                        id="status-chrome"
-                        class="app-status stopped"
-                    >
-                        ⚪ Not Running
-                    </span>
-
-                </div>
-
-
-                <!-- VS CODE -->
-
-                <div class="app-status-item">
-
-                    <span>
-                        💻 VS Code
-                    </span>
-
-                    <span
-                        id="status-vscode"
-                        class="app-status stopped"
-                    >
-                        ⚪ Not Running
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- CLOSE APPLICATION -->
-
-            <div class="close-app-controls">
-
-                <select id="close-app-selector">
-
-                    <option value="notepad">
-                        📝 Notepad
-                    </option>
-
-                    <option value="calculator">
-                        🧮 Calculator
-                    </option>
-
-                    <option value="explorer">
-                        📁 File Explorer
-                    </option>
-
-                    <option value="chrome">
-                        🌐 Chrome
-                    </option>
-
-                    <option value="vscode">
-                        💻 VS Code
-                    </option>
-
-                </select>
-
-
-                <button
-                    id="close-app"
-                    type="button"
-                >
-                    🛑 Close App
-                </button>
-
-            </div>
-
-
-            <!-- REFRESH -->
-
-            <button
-                id="refresh-apps"
-                class="refresh-apps"
-                type="button"
-            >
-                🔄 Refresh App Status
-            </button>
-
-        </section>
-
-
-    </main>
-
-</div>
-
-
-<!-- ================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================= -->
-
-<script src="/js/app.js"></script>
-
-<script src="/js/touchpad.js"></script>
-
-<script src="/js/keyboard.js"></script>
-
-<script src="/js/media.js"></script>
-
-<script src="/js/system.js"></script>
-
-<script src="/js/apps.js"></script>
-
-
-</body>
-
-</html>
+/* =========================================
+   SHUTDOWN
+========================================= */
+
+.system-shutdown {
+    background: #dc2626 !important;
+}
+
+
+/* =========================================
+   BRIGHTNESS CONTROL
+========================================= */
+
+.brightness-section {
+    margin-top: 18px;
+}
+
+.brightness-title {
+    margin-bottom: 10px;
+}
+
+.brightness-title h3 {
+    margin: 0 0 5px 0;
+    font-size: 19px;
+}
+
+.brightness-title p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BRIGHTNESS BUTTONS
+========================================= */
+
+.brightness-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.brightness-controls button {
+    min-height: 60px;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.brightness-controls button:active {
+    transform: scale(0.96);
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   BRIGHTNESS DOWN
+========================================= */
+
+.brightness-down {
+    background: #475569 !important;
+}
+
+
+/* =========================================
+   BRIGHTNESS UP
+========================================= */
+
+.brightness-up {
+    background: #eab308 !important;
+    color: #111827 !important;
+}
+
+
+/* =========================================
+   BRIGHTNESS VALUE
+========================================= */
+
+.brightness-value {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8fafc;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .system-controls {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .system-controls button,
+    .brightness-controls button {
+        min-height: 58px;
+        font-size: 14px;
+    }
+}
