@@ -1,92 +1,167 @@
-﻿# 🚀 PCPilot – Universal PC Remote
+﻿# 🚀 PCPilot — Universal PC Remote
 
-PCPilot is a web-based universal PC remote control application that empowers users to control their Windows PC directly from a mobile device.
+<p align="center">
+  <strong>Control your Windows PC directly from your smartphone.</strong>
+</p>
 
-The system features a lightweight **Flask** server running on the host machine and a mobile-optimized web UI that communicates seamlessly across the local Wi-Fi network using modular REST APIs.
+<p align="center">
+  A web-based PC remote control system built with Flask, JavaScript, and Python.
+</p>
 
----
+<p align="center">
 
-## ✨ Features
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-3.x-black?logo=flask)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?logo=javascript)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-### 🖱️ Mouse & Touchpad Control
-- **Touchpad Navigation:** Real-time cursor movement via mobile interface.
-- **Click Actions:** Primary left-click, right-click, and double-click support.
-
-### ⌨️ Keyboard Control & Shortcuts
-- **Direct Typing:** Send full text strings directly to the target PC.
-- **Special Keys:** Fast access to `ESC`, `TAB`, `ENTER`, `BACKSPACE`, and `DELETE`.
-- **Navigation:** Full directional arrow key control (`UP`, `DOWN`, `LEFT`, `RIGHT`).
-- **Shortcuts:** One-tap triggers for `CTRL+C`, `CTRL+V`, and `CTRL+A`.
-
-### 🎵 Media Remote
-- Play / Pause toggles.
-- Next and Previous track navigation.
-- Master Volume Up / Down controls.
-- Instant Mute / Unmute toggles.
-
-### 🖥️ System Management & Display
-- Quick actions: **Lock PC**, **Sleep Mode**, **Show Desktop**, and **Minimize Windows**.
-- Power controls: Remote **Restart** and **Shutdown**.
-- **Screen Brightness:** Adjust display brightness dynamically from the mobile UI.
-
-### 🚀 Application Management
-- **One-Tap Launcher:** Instantly launch popular applications (Google Chrome, Visual Studio Code, Notepad, Calculator, File Explorer).
-- **Process Monitor:** Check real-time running status of supported applications and terminate processes remotely.
-
-### 📡 Network Connection Status
-- Automatic server discovery and polling.
-- Live connectivity status updates directly on the mobile dashboard.
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 Overview
 
-* **Backend Framework:** Python, Flask
-* **Automation & System Libraries:** PyAutoGUI, WMI, PyWin32 / Python COM Interop
-* **Frontend:** HTML5, CSS3, Modern JavaScript (ES6+, Fetch API)
-* **Architecture:** Modular RESTful Services, Local Wi-Fi Network Communication
+**PCPilot** is a mobile-based universal PC remote control application that allows users to operate their Windows computer directly from a smartphone.
+
+The system runs a lightweight **Flask server on the PC** and provides a responsive web interface that can be accessed from any smartphone connected to the same local Wi-Fi network.
+
+Instead of using multiple physical controls, PCPilot combines mouse, keyboard, media, system, brightness, and application controls into a single mobile interface.
 
 ---
 
-## 📁 Project Structure
+## ✨ Key Features
+
+### 🖱️ Touchpad & Mouse Control
+
+Control the PC mouse directly from your smartphone.
+
+- Real-time cursor movement
+- Left click
+- Right click
+- Double click
+- Mobile-friendly touchpad interface
+
+---
+
+### ⌨️ Keyboard Control
+
+Use your smartphone as a wireless keyboard.
+
+- Send text to the PC
+- Enter
+- Escape
+- Tab
+- Backspace
+- Delete
+- Arrow keys
+- `CTRL + C`
+- `CTRL + V`
+- `CTRL + A`
+
+---
+
+### 🎵 Media Control
+
+Control media playback directly from your phone.
+
+- ▶️ Play / Pause
+- ⏮️ Previous
+- ⏭️ Next
+- 🔊 Volume Up
+- 🔉 Volume Down
+- 🔇 Mute
+
+---
+
+### 🖥️ System Control
+
+Perform common Windows system operations remotely.
+
+- 🔒 Lock PC
+- 🌙 Sleep
+- 🖥️ Show Desktop
+- 📉 Minimize Windows
+- 🔄 Restart
+- ⏻ Shutdown
+
+---
+
+### 💡 Brightness Control
+
+Control the PC display brightness remotely.
+
+- ☀️ Increase brightness
+- 🌙 Decrease brightness
+
+Brightness functionality is integrated into the system-control module.
+
+---
+
+### 🚀 Application Launcher
+
+Launch frequently used applications directly from the smartphone.
+
+Supported applications include:
+
+- 🌐 Google Chrome
+- 💻 Visual Studio Code
+- 📝 Notepad
+- 🧮 Calculator
+- 📁 File Explorer
+
+---
+
+### 🛑 Application Manager
+
+Monitor and manage supported applications.
+
+- Check whether applications are running
+- Refresh application status
+- Close selected applications remotely
+
+---
+
+### 📡 Connection Monitoring
+
+PCPilot continuously communicates with the Flask server to determine whether the PC is available.
+
+The interface provides a visual connection status so the user can easily determine whether the remote is connected.
+
+---
+
+# 🏗️ System Architecture
+
+PCPilot follows a simple client-server architecture.
 
 ```text
-AI-Powered Universal PC Remote/
-│
-├── server/
-│   ├── app.py
-│   │
-│   ├── routes/
-│   │   ├── mouse.py
-│   │   ├── keyboard.py
-│   │   ├── media.py
-│   │   ├── system.py
-│   │   └── apps.py
-│   │
-│   └── services/
-│       ├── mouse_service.py
-│       ├── keyboard_service.py
-│       ├── media_service.py
-│       ├── system_service.py
-│       └── app_service.py
-│
-├── mobile/
-│   ├── index.html
-│   │
-│   ├── style/
-│   │   ├── style.css
-│   │   ├── touchpad.css
-│   │   ├── keyboard.css
-│   │   ├── media.css
-│   │   ├── system.css
-│   │   └── apps.css
-│   │
-│   └── js/
-│       ├── app.js
-│       ├── touchpad.js
-│       ├── keyboard.js
-│       ├── media.js
-│       ├── system.js
-│       └── apps.js
-│
-└── README.md
+┌───────────────────────┐
+│      📱 Smartphone    │
+│                       │
+│ HTML / CSS / JS       │
+└───────────┬───────────┘
+            │
+            │ HTTP / REST API
+            │
+            ▼
+┌───────────────────────┐
+│    🌐 Flask Server    │
+│                       │
+│      Python Backend   │
+└───────────┬───────────┘
+            │
+            ▼
+┌─────────────────────────────────┐
+│        Backend Services         │
+│                                 │
+│  Mouse      Keyboard            │
+│  Media      System              │
+│  Brightness Applications        │
+└───────────┬─────────────────────┘
+            │
+            ▼
+┌───────────────────────┐
+│      💻 Windows PC    │
+└───────────────────────┘
