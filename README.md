@@ -1,102 +1,50 @@
 ﻿# 🚀 PCPilot – Universal PC Remote
 
-PCPilot is a web-based universal PC remote control application that allows users to control their Windows PC directly from a mobile phone.
+PCPilot is a web-based universal PC remote control application that empowers users to control their Windows PC directly from a mobile device.
 
-The application uses a Flask backend running on the PC and a mobile-friendly web interface that communicates with the PC over the same local Wi-Fi network.
+The system features a lightweight **Flask** server running on the host machine and a mobile-optimized web UI that communicates seamlessly across the local Wi-Fi network using modular REST APIs.
 
 ---
 
 ## ✨ Features
 
-### 🖱️ Mouse / Touchpad Control
-- Move the PC cursor using a mobile touchpad
-- Left click
-- Right click
-- Double click
-- Real-time cursor movement
+### 🖱️ Mouse & Touchpad Control
+- **Touchpad Navigation:** Real-time cursor movement via mobile interface.
+- **Click Actions:** Primary left-click, right-click, and double-click support.
 
-### ⌨️ Keyboard Control
-- Type text from your mobile phone
-- Send text directly to the PC
-- Special keys:
-  - ESC
-  - TAB
-  - ENTER
-  - BACKSPACE
-  - DELETE
-- Arrow keys:
-  - UP
-  - DOWN
-  - LEFT
-  - RIGHT
-- Keyboard shortcuts:
-  - CTRL + C
-  - CTRL + V
-  - CTRL + A
+### ⌨️ Keyboard Control & Shortcuts
+- **Direct Typing:** Send full text strings directly to the target PC.
+- **Special Keys:** Fast access to `ESC`, `TAB`, `ENTER`, `BACKSPACE`, and `DELETE`.
+- **Navigation:** Full directional arrow key control (`UP`, `DOWN`, `LEFT`, `RIGHT`).
+- **Shortcuts:** One-tap triggers for `CTRL+C`, `CTRL+V`, and `CTRL+A`.
 
 ### 🎵 Media Remote
-- Play / Pause
-- Previous track
-- Next track
-- Volume Up
-- Volume Down
-- Mute / Unmute
+- Play / Pause toggles.
+- Next and Previous track navigation.
+- Master Volume Up / Down controls.
+- Instant Mute / Unmute toggles.
 
-### 🖥️ System Control
-- Lock PC
-- Put PC to Sleep
-- Show Desktop
-- Minimize Windows
-- Restart PC
-- Shutdown PC
+### 🖥️ System Management & Display
+- Quick actions: **Lock PC**, **Sleep Mode**, **Show Desktop**, and **Minimize Windows**.
+- Power controls: Remote **Restart** and **Shutdown**.
+- **Screen Brightness:** Adjust display brightness dynamically from the mobile UI.
 
-### 💡 Brightness Control
-- Increase screen brightness
-- Decrease screen brightness
-- Brightness control directly from the mobile interface
+### 🚀 Application Management
+- **One-Tap Launcher:** Instantly launch popular applications (Google Chrome, Visual Studio Code, Notepad, Calculator, File Explorer).
+- **Process Monitor:** Check real-time running status of supported applications and terminate processes remotely.
 
-### 🚀 Application Launcher
-Launch applications installed on the PC directly from the phone:
-
-- Google Chrome
-- Visual Studio Code
-- Notepad
-- Calculator
-- File Explorer
-
-### 🛑 Application Manager
-- Check whether supported applications are running
-- Refresh application status
-- Close applications remotely
-
-### 📡 Connection Status
-- Displays whether the mobile device is connected to the PC
-- Automatically checks the server status
-- Shows the PC connection status on the mobile interface
+### 📡 Network Connection Status
+- Automatic server discovery and polling.
+- Live connectivity status updates directly on the mobile dashboard.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-### Backend
-- Python
-- Flask
-- PyAutoGUI
-- WMI
-- PyWin32 / Python COM support
-- Windows system commands
-
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- Fetch API
-- Responsive Mobile UI
-
-### Communication
-- REST API
-- Local Wi-Fi network
-- HTTP requests
+* **Backend Framework:** Python, Flask
+* **Automation & System Libraries:** PyAutoGUI, WMI, PyWin32 / Python COM Interop
+* **Frontend:** HTML5, CSS3, Modern JavaScript (ES6+, Fetch API)
+* **Architecture:** Modular RESTful Services, Local Wi-Fi Network Communication
 
 ---
 
